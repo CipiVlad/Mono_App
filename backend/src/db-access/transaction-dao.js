@@ -5,44 +5,43 @@ const monoCollectionName= "transaction";
 
 async function findAllTransactionsObjects() {
     const db = await getDB()
-    const allTransactions = await db.collection(monoCollectionName).find().toArray() // toArray() returned auch eine promise, daher await
+    const allTransactions = await db.collection(monoCollectionName).find().toArray() 
     return allTransactions
 }
 
 async function findTransactionsById(id) {
     const db = await getDB()
-    const foundTransaction = await db.collection(monoCollectionName).findOne({ _id: ObjectId(id) }) // findOne() returned auch eine promise, daher await
+    const foundTransaction = await db.collection(monoCollectionName).findOne({ _id: ObjectId(id) }) 
     return foundTransaction
 }
 
-async function insertOne(notesInfo) {
+async function insertTransaction(addIncomeExpense) {
     const db = await getDB()
-    // wir können das direkt returnen auch (muss nicht wie oben alles extra benannt werden)
-    return db.collection(monoCollectionName).insertOne(notesInfo) // insertOne() returned auch eine promise, daher await
+    return db.collection(monoCollectionName).insertOne(addIncomeExpense)
 }
 
-async function delteNote(noteId) {
+async function deleteTransaction(transactionId) {
     const db = await getDB();
-    const removeNote = db.collection(monoCollectionName).findOneAndDelete({ _id: ObjectId(noteId) })
-    return removeNote
+    const removeTransaction = db.collection(monoCollectionName).findOneAndDelete({ _id: ObjectId(transactionId) })
+    return removeTransaction
 }
 
-async function editNote(noteId, newTextValue) {
+async function editTransaction(transactionId, newValue) {
     const db = await getDB()
-    const updateNote = db.collection(monoCollectionName).findOneAndUpdate(
-        { _id: ObjectId(noteId) },
-        { $set: { text: newTextValue.text, title: newTextValue.title} },
+    const updateTransaction = db.collection(monoCollectionName).findOneAndUpdate(
+        { _id: ObjectId(transactionId) },
+        { $set: { name: newValue.name} },
         { returnDocument: "after" }
     )
 
-    return updateNote
+    return updateTransaction
 }
 
 
 module.exports = {
-    findAll,
-    findById,
-    insertOne,
-    delteNote,
-    editNote
+    findAllTransactionsObjects,
+    findTransactionsById,
+    insertTransaction,
+    deleteTransaction,
+    editTransaction
 }
