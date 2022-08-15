@@ -29,17 +29,6 @@ async function insertUser(userInfo) {
     .insertOne(userInfo);
   return insertResult;
 }
-
-async function updateUsersTotalBalance(userId, totalBalance) {
-  const db = await getDB();
-  const updateResult = await db
-    .collection(usersCollectionName)
-    .update(
-      { _id: new ObjectId(userId) },
-      { $set: { totalBalance: totalBalance } }
-    );
-  return updateResult;
-}
 module.exports = {
   findAllUsers,
   findUserByEmail,
