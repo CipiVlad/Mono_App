@@ -3,36 +3,37 @@ const { ObjectId } = require("mongodb");
 
 const usersCollectionName = "users";
 
-async function findAllUsers() {
+async function findAll() {
   const db = await getDB();
-  const allUsers = db.collection(usersCollectionName).find().toArray();
-  return allUsers;
+  const users = await db.collection(usersCollectionName).find().toArray(); // toArray() returned auch eine promise, daher await
+  return users;
 }
-async function findUserById(id) {
+
+async function findById(id) {
   const db = await getDB();
   const foundUser = await db
     .collection(usersCollectionName)
-    .findOne({ _id: new ObjectId(id) });
+    .findOne({ _id: ObjectId(id) }); // findOne() returned auch eine promise, daher await
   return foundUser;
 }
-async function findUserByEmail(userEmail) {
+
+async function findByEmail(email) {
   const db = await getDB();
-  const foundUser = db
+  const foundUser = await db
     .collection(usersCollectionName)
-    .findOne({ email: userEmail });
+    .findOne({ email: email });
   return foundUser;
 }
+
 async function insertUser(userInfo) {
   const db = await getDB();
-  const insertResult = await db
-    .collection(usersCollectionName)
-    .insertOne(userInfo);
-  return insertResult;
+  // wir können das direkt returnen auch (muss nicht wie oben alles extra benannt werden)
+  return db.collection(usersCollectionName).insertOne(userInfo); // insertOne() returned auch eine promise, daher await
 }
+
 module.exports = {
-  findAllUsers,
-  findUserByEmail,
-  findUserById,
+  findAll,
+  findByEmail,
+  findById,
   insertUser,
-  updateUsersTotalBalance,
 };

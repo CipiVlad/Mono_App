@@ -1,5 +1,7 @@
-const TransactionsDAO = require('./transaction-dao.js')
+const TransactionsDAO = require("./transaction-dao");
+const UserDAO = require("./users-dao");
 
-module.exports={
-    TransactionsDAO
-}
+module.exports = {
+  TransactionsDAO,
+  UserDAO,
+};
