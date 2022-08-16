@@ -1,5 +1,43 @@
+<<<<<<< HEAD
+=======
+@import './variables.scss';
+
+>>>>>>> 661009d28cc9a11dc8a1ff61d49410b4f0afde19
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+<<<<<<< HEAD
+=======
+}
+
+// ===============================
+//      GENERAL HEADLINES
+// ===============================
+
+/* Spend Smarter Save More, Login, Sign Up */
+
+h1 {
+    color: $darkBlue;
+}
+
+/* White headlines: Profile, Add Income, Add Expense */
+h2 {
+    color: #F2F2F2;
+}
+
+/* Login Labels */
+h3 {
+    color: #666666;
+}
+
+/* Already have an account? */
+h4 {
+    color: #444444;
+}
+
+/* Profile Information */
+h5 {
+    color: #000;
+>>>>>>> 661009d28cc9a11dc8a1ff61d49410b4f0afde19
 }
