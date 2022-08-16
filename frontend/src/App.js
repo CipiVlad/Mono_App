@@ -1,20 +1,35 @@
 import './App.scss';
-import Home from './components/Home';
-import Nav from './components/Nav';
-import Button from './components/Button';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import './App.css';
+import { useState, useEffect } from 'react'
+import Home from './pages/Home';
+import Nav from './components/Nav';
+import Wallet from './pages/Wallet'
+import Statistic from './pages/Statistic'
+
 
 function App() {
+
+  const [allFinObj, setAllFinObj] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:9000/transactions/all')
+      .then((res) => res.json())
+      .then((alldata) => setAllFinObj(alldata))
+      .catch((err) => console.log(err))
+  }, [])
+
+  console.log(allFinObj)
+
   return (
     <div className="App">
       <h1>Mono App</h1>
       <BrowserRouter>
         <Nav />
-        <Button />
         <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Route path="about" element={<About />} /> */}
+          <Route path="/" element={<Home allFinObj={allFinObj} setAllFinObj={setAllFinObj} />} />
+          <Route path="/wallet" element={<Wallet allFinObj={allFinObj} setAllFinObj={setAllFinObj} />} />
+          <Route path="/statistic" element={<Statistic allFinObj={allFinObj} setAllFinObj={setAllFinObj} />} />
+
         </Routes>
       </BrowserRouter>
     </div >
