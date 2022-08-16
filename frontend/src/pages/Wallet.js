@@ -1,7 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Wallet = ({ allFinObj, setAllFinObj }) => {
-
 
 
   return (
@@ -16,9 +16,11 @@ const Wallet = ({ allFinObj, setAllFinObj }) => {
       <div className="transactionsHistory">
         {allFinObj && allFinObj.map((ele, index) =>
           <div key={index}>
-            <h4>{ele.name}</h4>
-            <p>{ele.date}</p>
-            <p>{ele.amount}</p>
+            <Link to={`/${ele._id}`}>
+              <h4>{ele.name}</h4>
+              <p>{ele.date}</p>
+              <p>{ele.amount}</p>
+            </Link>
           </div>
         )}
       </div>

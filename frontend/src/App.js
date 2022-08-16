@@ -29,7 +29,7 @@ function App() {
           <Route path="/wallet" element={<Wallet allFinObj={allFinObj} setAllFinObj={setAllFinObj} />} />
           <Route path="/statistic" element={<Statistic allFinObj={allFinObj} setAllFinObj={setAllFinObj} />} />
 
-          <Route path="/details/:id" element={<TransactionsDetails allFinObj={allFinObj} />} />
+          <Route path="/:id" element={<TransactionsDetails allFinObj={allFinObj} />} />
 
         </Routes>
       </BrowserRouter>
