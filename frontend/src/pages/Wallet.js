@@ -1,8 +1,18 @@
 import React from 'react'
 
-const Wallet = () => {
+const Wallet = ({ allFinObj, setAllFinObj }) => {
+
+  console.log(allFinObj)
+
   return (
-    <div>Wallet</div>
+    <div>
+      {allFinObj && allFinObj.map((ele) =>
+        <div key={ele._id}>
+          <h2>{ele.name}</h2>
+
+        </div>
+      )}
+    </div>
   )
 }
 
