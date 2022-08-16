@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Nav from './components/Nav';
 import Wallet from './pages/Wallet'
 import Statistic from './pages/Statistic'
+import TransactionsDetails from './pages/TransactionsDetails'
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
       .catch((err) => console.log(err))
   }, [])
 
-  console.log(allFinObj)
+  // console.log(allFinObj)
 
   return (
     <div className="App">
@@ -29,6 +30,8 @@ function App() {
           <Route path="/" element={<Home allFinObj={allFinObj} setAllFinObj={setAllFinObj} />} />
           <Route path="/wallet" element={<Wallet allFinObj={allFinObj} setAllFinObj={setAllFinObj} />} />
           <Route path="/statistic" element={<Statistic allFinObj={allFinObj} setAllFinObj={setAllFinObj} />} />
+
+          <Route path="/details/:id" element={<TransactionsDetails allFinObj={allFinObj} />} />
 
         </Routes>
       </BrowserRouter>
