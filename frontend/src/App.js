@@ -6,7 +6,8 @@ import Nav from './components/Nav';
 import Wallet from './pages/Wallet'
 import Statistic from './pages/Statistic'
 import TransactionsDetails from './pages/TransactionsDetails'
-
+import Onboarding from './pages/Onboarding'
+import Splashscreen from './pages/SplashScreen'
 
 function App() {
 
@@ -29,7 +30,10 @@ function App() {
           <Route path="/wallet" element={<Wallet allFinObj={allFinObj} setAllFinObj={setAllFinObj} />} />
           <Route path="/statistic" element={<Statistic allFinObj={allFinObj} setAllFinObj={setAllFinObj} />} />
 
-          <Route path="/:id" element={<TransactionsDetails allFinObj={allFinObj} />} />
+          <Route path="/:id" element={<TransactionsDetails />} />
+
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/splashscreen" element={<Splashscreen />} />
 
         </Routes>
       </BrowserRouter>
