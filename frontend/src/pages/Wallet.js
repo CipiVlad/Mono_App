@@ -5,7 +5,7 @@ const Wallet = ({ allFinObj, setAllFinObj }) => {
 
 
   return (
-    <div>
+    <div className="wallet">
       <section>
         <h4>Total Balance</h4>
         <h2>{allFinObj && allFinObj.map((ele, index) =>
@@ -13,7 +13,7 @@ const Wallet = ({ allFinObj, setAllFinObj }) => {
         )}</h2>
       </section>
       <h6>Transactions History</h6>
-      <div>
+      <div className="transactionsHistory">
         {allFinObj && allFinObj.map((ele, index) =>
           <div key={index}>
             <h4>{ele.name}</h4>

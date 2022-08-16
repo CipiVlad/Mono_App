@@ -23,9 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Mono App</h1>
       <BrowserRouter>
-        <Nav />
         <Routes>
           <Route path="/" element={<Home allFinObj={allFinObj} setAllFinObj={setAllFinObj} />} />
           <Route path="/wallet" element={<Wallet allFinObj={allFinObj} setAllFinObj={setAllFinObj} />} />
@@ -35,6 +33,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
+      <Nav />
     </div >
   );
 }
