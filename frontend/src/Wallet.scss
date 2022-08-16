@@ -1,3 +1,7 @@
+@import './variables.scss';
+@import './generals.scss';
+// @import Placeholder '../img/Placeholder.png';
+
 // ===============================
 //             WALLET
 // ===============================
@@ -16,6 +20,7 @@
     h6 {}
 
     .transactionsHistory {
+        background: $white;
 
         p:nth-of-type(1) {
             color: #666666;
@@ -25,5 +30,11 @@
             color: $incomeGreen;
             /* Farbe ist nur Platzhalter!! */
         }
+
+        .transactionsDetails {}
     }
+
+    // .transactionsHistory::before {
+    //     content: 'Placeholder';
+    // }
 }

@@ -15,7 +15,7 @@ const Wallet = ({ allFinObj, setAllFinObj }) => {
       <h6>Transactions History</h6>
       <div className="transactionsHistory">
         {allFinObj && allFinObj.map((ele, index) =>
-          <div key={index}>
+          <div className="transactionsDetails" key={index}>
             <Link to={`/${ele._id}`}>
               <h4>{ele.name}</h4>
               <p>{ele.date}</p>
