@@ -1,10 +1,17 @@
-const {TransactionDAO} = require('../db-access')
+const { TransactionsDAO } = require("../db-access")
 
 async function showAllTransactions(){
-    const transactionsArray = await TransactionDAO.findAll()
-    return transactionsArray.map(transaction => ({ 
-        _id:transaction._id,
-        name:transaction.name
+    const transactions = await TransactionsDAO
+        .findAllTransactionsObjects()
+    return transactions.map(trans => ({
+        _id: trans._id,
+        name: trans.name,
+        income: trans.income,
+        amount: trans.amount,
+        date: trans.date,
+        time: trans.time,
+        icon: trans.icon,
+        userId: trans.userId
     }))
 }
 

@@ -1,8 +1,8 @@
 const cors = require('cors')
 const express = require('express');
+const app = express()
 const PORT = process.env.PORT || 9000
 const morgan = require('morgan')
-const app = express()
 const {transactionsRouter} = require('./src/routes/transactions-routes')
 
 app.use(cors())
