@@ -2,6 +2,7 @@ const express = require('express')
 const {showAllTransactions} = require('../use-cases/show-all-transactions')
 const {createNewIncome} = require('../use-cases/addIncome')
 const {removeTransaction} = require('../use-cases/delete-transaction')
+const {showDetailTransaction} = require('../use-cases/show-detail-transactions')
 const transactionsRouter = express.Router()
 
 transactionsRouter.get("/all", (_,res)=>{
@@ -40,6 +41,19 @@ transactionsRouter.post("/add", (req,res)=>{
     })
 })
 
+
+transactionsRouter.get('/details/:id', (req, res) =>{
+    const transactionId = req.params.id;
+    console.log(transactionId)
+
+    showDetailTransaction({transactionId})
+    .then((details) =>res.json(details))
+    .catch(err =>{
+        console.log(err)
+        res.status(500).json({error: "Failed to show detailed transaction"})
+    })
+})
+
 transactionsRouter.delete("/delete/:id", (req, res) =>{
     const transactionId = req.params.id;
     removeTransaction({ transactionId})
@@ -49,6 +63,8 @@ transactionsRouter.delete("/delete/:id", (req, res) =>{
         res.status(500).json({error: "Failed to remove transaction from database."})
     })
 })
+
+
 
 
 module.exports = {
