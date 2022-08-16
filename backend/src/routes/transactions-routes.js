@@ -3,6 +3,7 @@ const {showAllTransactions} = require('../use-cases/show-all-transactions')
 const {createNewIncome} = require('../use-cases/addIncome')
 const {removeTransaction} = require('../use-cases/delete-transaction')
 const {showDetailTransaction} = require('../use-cases/show-detail-transactions')
+const {updateTransaction} = require('../use-cases/edit-transactions')
 const transactionsRouter = express.Router()
 
 transactionsRouter.get("/all", (_,res)=>{
@@ -65,7 +66,19 @@ transactionsRouter.delete("/delete/:id", (req, res) =>{
 })
 
 
+transactionsRouter.put('/edit/:id', (req, res) =>{
+    const transactionId = req.params.id;
+    const newTransactionValue = {
+        name: req.body.name,
+    } 
 
+    updateTransaction({transactionId, doneValue: newTransactionValue})
+    .then(updateTransaction =>res.json(updateTransaction))
+    .catch(err =>{
+        console.log(err)
+        res.status(500).json({error: "Failed to update transaction"})
+    })
+})
 
 module.exports = {
     transactionsRouter
