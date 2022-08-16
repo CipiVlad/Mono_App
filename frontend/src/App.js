@@ -7,18 +7,18 @@ import Wallet from './pages/Wallet'
 import Statistic from './pages/Statistic'
 
 
-
 function App() {
 
   const [allFinObj, setAllFinObj] = useState([])
 
   useEffect(() => {
     fetch('http://localhost:9000/transactions/all')
-      .then((res) => res.json)
-      .then((jsonObj) => setAllFinObj(jsonObj))
+      .then((res) => res.json())
+      .then((alldata) => setAllFinObj(alldata))
       .catch((err) => console.log(err))
   }, [])
 
+  console.log(allFinObj)
 
   return (
     <div className="App">
