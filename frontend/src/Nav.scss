@@ -1,0 +1,26 @@
+@import './variables.scss';
+
+// ===============================
+//             NAV
+// ===============================
+
+.nav {
+    padding: 1vh 1%;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+    width: 15%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+    z-index: 999;
+
+    img {
+        width: 10%;
+    }
+
+    img:nth-of-type(3) {
+        padding: 3%;
+        background: $darkBlue;
+        border-radius: 50px;
+    }
+}
