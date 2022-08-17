@@ -10,6 +10,7 @@ import Onboarding from './pages/Onboarding'
 import Splashscreen from './pages/SplashScreen'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
+import Profile from './pages/Profile'
 
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+
+          <Route path="/profile" element={<Profile />} />
 
         </Routes>
       </BrowserRouter>
