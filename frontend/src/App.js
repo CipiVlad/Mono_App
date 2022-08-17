@@ -11,6 +11,8 @@ import Splashscreen from './pages/SplashScreen'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
+import Add from './pages/Add'
+
 
 
 function App() {
@@ -43,6 +45,9 @@ function App() {
           <Route path="/login" element={<Login />} />
 
           <Route path="/profile" element={<Profile />} />
+
+          <Route path="/add" element={<Add />} />
+
 
         </Routes>
       </BrowserRouter>
