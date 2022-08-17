@@ -1,5 +1,5 @@
 @import './variables.scss';
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
     margin: 0;
@@ -20,9 +20,10 @@ h1 {
     color: $darkBlue;
 }
 
-/* White headlines: Profile, Add Income, Add Expense */
+/* $ */
 h2 {
-    color: #444444;
+    color: #000;
+    ;
 }
 
 /* Login Labels */
@@ -30,7 +31,7 @@ h3 {
     color: #666666;
 }
 
-/* Already have an account? */
+/* White headlines: Profile, Add Income, Add Expense */
 h4 {
     color: #fff;
 }
@@ -40,4 +41,6 @@ h5 {
     color: #000;
 }
 
-p {}
+p {
+    color: #666666;
+}

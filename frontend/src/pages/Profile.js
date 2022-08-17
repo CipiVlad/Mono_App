@@ -6,6 +6,7 @@ import users from '../img/users.png'
 import envelope from '../img/envelope.png'
 import shield from '../img/shield.png'
 import lock from '../img/lock.png'
+import '../Profile.scss'
 
 const Profile = () => {
 
@@ -19,8 +20,8 @@ const Profile = () => {
   })
 
   return (
-    <div>
-      <div>
+    <div className="profile">
+      <div className="topBlueContainer">
         <img src={left} alt="left" />
         <p>Profile</p>
       </div>

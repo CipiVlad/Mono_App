@@ -7,6 +7,9 @@ function makeUser({
   passwordHash,
   passwordSalt,
 }) {
+  if (!name) {
+    throw new Error("name must exist.");
+  }
   if (!email) {
     throw new Error("E-Mail must exist.");
   }
