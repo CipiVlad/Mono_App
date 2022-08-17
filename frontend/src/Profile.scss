@@ -1,0 +1,13 @@
+@import './variables.scss';
+@import './generals.scss';
+
+.profile {
+    width: 20%;
+    margin: auto;
+    background: $darkBlue;
+
+    .topBlueContainer {
+        display: flex;
+        padding: 5vh 5%;
+    }
+}
