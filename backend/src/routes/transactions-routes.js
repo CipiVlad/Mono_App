@@ -10,8 +10,9 @@ const doAuthMiddleware = makeDoAuthMiddleware("access");
 
 const transactionsRouter = express.Router();
 
-transactionsRouter.get("/all", doAuthMiddleware, (_, res) => {
-  showAllTransactions()
+transactionsRouter.get("/all", doAuthMiddleware, (req, res) => {
+  const userId = req.userClaims.sub;
+  showAllTransactions({ userId })
     .then((transactions) => {
       return res.json(transactions);
     })
