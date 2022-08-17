@@ -31,9 +31,17 @@ async function insertUser(userInfo) {
   return db.collection(usersCollectionName).insertOne(userInfo); // insertOne() returned auch eine promise, daher await
 }
 
+async function updateUserTotalBalance(id, totalBalance) {
+  const db = await getDB();
+  return db
+    .collection(usersCollectionName)
+    .updateOne({ _id: ObjectId(id) }, { $set: { totalBalance } });
+}
+
 module.exports = {
   findAll,
   findByEmail,
   findById,
   insertUser,
+  updateUserTotalBalance,
 };
