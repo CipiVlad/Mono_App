@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+import React from "react";
+
+const Nav = () => {
+  return (
+    <div className="nav">
+      <img src="/frontend/src/img/Home.png" alt="home" />
+      <img src="/frontend/src/img/Stats.png" alt="stats" />
+      <img src="frontend/src/img/Add.png" alt="add" />
+      <img src="/frontend/src/img/Walllet.png" alt="wallet" />
+      <img src="frontend/src/img/User.png" alt="profile" />
+    </div>
+  );
+};
+=======
 import React from 'react'
 import Home from '../img/Home.png';
 import Stats from '../img/Stats.png';
@@ -17,5 +32,6 @@ const Nav = () => {
         </div>
     )
 }
+>>>>>>> 20ac91a7a222ee4b55936fb1b416fc07d768b03a
 
-export default Nav
+export default Nav;
