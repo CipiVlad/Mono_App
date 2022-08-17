@@ -1,4 +1,5 @@
 @import './variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 * {
     margin: 0;
@@ -10,15 +11,18 @@
 //      GENERAL HEADLINES
 // ===============================
 
-/* Spend Smarter Save More, Login, Sign Up */
+body {
+    font-family: 'Inter', sans-serif;
+}
 
+/* Spend Smarter Save More, Login, Sign Up */
 h1 {
     color: $darkBlue;
 }
 
 /* White headlines: Profile, Add Income, Add Expense */
 h2 {
-    color: #F2F2F2;
+    color: #444444;
 }
 
 /* Login Labels */
@@ -28,10 +32,12 @@ h3 {
 
 /* Already have an account? */
 h4 {
-    color: #444444;
+    color: #fff;
 }
 
 /* Profile Information */
 h5 {
     color: #000;
 }
+
+p {}
