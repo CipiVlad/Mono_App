@@ -1,6 +1,6 @@
 const express = require('express')
 const {showAllTransactions} = require('../use-cases/show-all-transactions')
-const {createNewIncome} = require('../use-cases/addIncome')
+const {createTransaction} = require('../use-cases/addTransactions')
 const {removeTransaction} = require('../use-cases/delete-transaction')
 const {showDetailTransaction} = require('../use-cases/show-detail-transactions')
 const {updateTransaction} = require('../use-cases/edit-transactions')
@@ -24,7 +24,7 @@ transactionsRouter.post("/add", (req,res)=>{
         return;
     }
 
-    const newIncomeObject ={
+    const newTransactionObject ={
         name: req.body.name,
         income: req.body.income,
         amount: req.body.amount,
@@ -34,8 +34,8 @@ transactionsRouter.post("/add", (req,res)=>{
         userId: req.body.userId
     }
 
-    createNewIncome(newIncomeObject)
-    .then(addedIncome =>res.status(201).json(addedIncome))
+    createNewTransaction(newTransactionObject)
+    .then(addedTransaction =>res.status(201).json(addedTransaction))
     .catch(err =>{
         console.log(err)
         res.status(500).json({error: "Failed to add new income to database."})
@@ -66,7 +66,7 @@ transactionsRouter.delete("/delete/:id", (req, res) =>{
 })
 
 
-transactionsRouter.put('/edit/:id', (req, res) =>{
+transactionsRouter.put('edit/:id', (req, res) =>{
     const transactionId = req.params.id;
     const newTransactionValue = {
         name: req.body.name,
@@ -74,10 +74,6 @@ transactionsRouter.put('/edit/:id', (req, res) =>{
 
     updateTransaction({transactionId, doneValue: newTransactionValue})
     .then(updateTransaction =>res.json(updateTransaction))
-    .catch(err =>{
-        console.log(err)
-        res.status(500).json({error: "Failed to update transaction"})
-    })
 })
 
 module.exports = {
