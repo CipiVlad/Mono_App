@@ -1,7 +1,7 @@
 import React from 'react'
 import Home from '../img/Home.png';
 import Stats from '../img/Stats.png';
-import Add from '../img/Add.png';
+import Add from '../img/Addblue.png';
 import Wallet from '../img/Wallet.png';
 import Profile from '../img/User.png';
 import '../Nav.scss';
