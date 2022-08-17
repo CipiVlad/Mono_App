@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+
 
 const Home = ({ allFinObj, setAllFinObj }) => {
 
   return (
-    <div>
-      <section>
-        <h4>Total Balance</h4>
+    <div className='Home'>
+      <section className='HomeBox'>
+        <h4>Total Balance ^</h4>
         <div>{allFinObj && allFinObj.map((ele, index) =>
           <div key={index}>
             <h2>$ {ele.amount}</h2>
@@ -16,15 +17,17 @@ const Home = ({ allFinObj, setAllFinObj }) => {
           </div>
         )}</div>
       </section>
-      <h6>Transactions History</h6>
-      <div>
-        {allFinObj && allFinObj.map((ele, index) =>
-          <div key={index}>
-            <h4>{ele.name}</h4>
-            <p>{ele.date}</p>
-            <p>$ {ele.amount}</p>
-          </div>
-        )}
+      <div className='transactionsHistory'>
+        <h6>Transactions History</h6>
+        <div>
+          {allFinObj && allFinObj.map((ele, index) =>
+            <div key={index}>
+              <h4>{ele.name}</h4>
+              <p>{ele.date}</p>
+              <p>$ {ele.amount}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
