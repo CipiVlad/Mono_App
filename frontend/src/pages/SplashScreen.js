@@ -7,8 +7,8 @@ const SplashScreen = () => {
 
 
   return (
-    <div>
-      <h1 onClick={() => navigate('/onboarding')}>Mono</h1>
+    <div onClick={() => navigate('/onboarding')}>
+      <h1>Mono</h1>
     </div>
   )
 }

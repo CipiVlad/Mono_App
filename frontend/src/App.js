@@ -8,6 +8,9 @@ import Statistic from './pages/Statistic'
 import TransactionsDetails from './pages/TransactionsDetails'
 import Onboarding from './pages/Onboarding'
 import Splashscreen from './pages/SplashScreen'
+import SignUp from './pages/SignUp'
+import Login from './pages/Login'
+
 
 function App() {
 
@@ -32,8 +35,11 @@ function App() {
 
           <Route path="/:id" element={<TransactionsDetails />} />
 
-          <Route path="/onboarding" element={<Onboarding />} />
+
           <Route path="/splashscreen" element={<Splashscreen />} />
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
 
         </Routes>
       </BrowserRouter>
