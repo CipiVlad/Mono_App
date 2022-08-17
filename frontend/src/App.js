@@ -1,5 +1,6 @@
 import "./App.scss";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import Nav from "./components/Nav";
@@ -11,6 +12,22 @@ import Splashscreen from "./pages/SplashScreen";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+=======
+import { useState, useEffect } from 'react'
+import Home from './pages/Home';
+import Nav from './components/Nav';
+import Wallet from './pages/Wallet'
+import Statistic from './pages/Statistic'
+import TransactionsDetails from './pages/TransactionsDetails'
+import Onboarding from './pages/Onboarding'
+import Splashscreen from './pages/SplashScreen'
+import SignUp from './pages/SignUp'
+import Login from './pages/Login'
+import Profile from './pages/Profile'
+import Add from './pages/Add'
+
+
+>>>>>>> 721c7dc983a4e24b52520837dbda495222385d3b
 
 function App() {
   const [allFinObj, setAllFinObj] = useState([]);
@@ -53,6 +70,13 @@ function App() {
           <Route path="/login" element={<Login />} />
 
           <Route path="/profile" element={<Profile />} />
+<<<<<<< HEAD
+=======
+
+          <Route path="/add" element={<Add />} />
+
+
+>>>>>>> 721c7dc983a4e24b52520837dbda495222385d3b
         </Routes>
       </BrowserRouter>
       <Nav />
