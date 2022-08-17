@@ -3,31 +3,48 @@ import '../Wallet.scss';
 import Add from '../img/Add.png';
 import Pay from '../img/Pay.png';
 import Send from '../img/Send.png';
+import ArrowLeft from '../img/ArrowLeft.png';
 
 const Wallet = ({ allFinObj, setAllFinObj }) => {
 
   return (
     <div className="wallet">
-      <section>
-        <h4>Total Balance</h4>
-        <h2>{allFinObj && allFinObj.map((ele, index) =>
-          <p key={index}>{ele.amount}</p>
-        )}</h2>
-      </section>
-      <div className="addPaySend">
-        <img src={Add} alt="add" />
-        <img src={Pay} alt="pay" />
-        <img src={Send} alt="send" />
+      <div className="topBlueContainer">
+        <a href="#"><img src={ArrowLeft} alt="arrow left" /></a>
+        <h4>Wallet</h4>
       </div>
-      <h6>Transactions History</h6>
-      <div className="transactionsHistory">
-        {allFinObj && allFinObj.map((ele, index) =>
-          <div key={index} className="transactionsDetails">
-            <h4>{ele.name}</h4>
-            <p>{ele.date}</p>
-            <p>{ele.amount}</p>
+      <div className="whiteContainer">
+        <section>
+          <p>Total Balance</p>
+          <h2>$ {allFinObj && allFinObj.map((ele, index) =>
+            <p key={index}>{ele.amount}</p>
+          )}</h2>
+        </section>
+        <div className="addPaySendGroup">
+          <div className="addGroup">
+            <img src={Add} alt="add" />
+            <figcaption>Add</figcaption>
           </div>
-        )}
+          <div className="payGroup">
+            <img src={Pay} alt="pay" />
+            <figcaption>Pay</figcaption>
+          </div>
+          <div className="sendGroup">
+            <img src={Send} alt="send" />
+            <figcaption>Send</figcaption>
+
+          </div>
+        </div>
+        <div className="transactionsHistory">
+          <h6>Transactions History</h6>
+          {allFinObj && allFinObj.map((ele, index) =>
+            <div key={index} className="transactionsDetails">
+              <h4>{ele.name}</h4>
+              <p>{ele.date}</p>
+              <p>{ele.amount}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
