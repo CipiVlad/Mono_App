@@ -2,20 +2,41 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../scss/Login.scss';
 import Guy from '../img/Guy.png';
+import { apiBaseUrl } from "../api/api";
 
-const Login = () => {
+const Login = ({ setToken }) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     function handleLogIn(e) {
         e.preventDefault();
-        console.log(email);
-        console.log(password);
-        navigate('/')
-        // fetch kommt hier rein !!
+
+        fetch(`${apiBaseUrl}/users/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email,
+                password,
+            }),
+            //   credentials: "include",
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                console.log(result.message);
+                if (result.message) {
+                    return setErrorMessage(result.message);
+                }
+
+                console.log(result.accessToken);
+                setToken(result.accessToken);
+                navigate("/home");
+            });
     }
 
     return (
@@ -31,11 +52,14 @@ const Login = () => {
                 </div>
 
                 <button onClick={handleLogIn}>Login</button>
-                {/* ONCLICK FEHLT NOCH... */}
+                {errorMessage && <p>{errorMessage}</p>}
             </form>
-            <p>Have No Account? <Link to="/signup">Sign Up</Link> </p>
-        </div>
-    )
-}
 
-export default Login
+            <p>
+                Have No Account? <Link to="/signup">Sign Up</Link>{" "}
+            </p>
+        </div>
+    );
+};
+
+export default Login;

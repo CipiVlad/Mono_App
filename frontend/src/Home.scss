@@ -1,0 +1,29 @@
+.Home {
+    width: 20%;
+    margin: auto;
+    background: $babyBlue;
+    border-radius: 0 0 60px 60px;
+    padding-top: 20vh;
+
+    section {
+        background-color: $darkBlue;
+        border-radius: 20px;
+        text-align: left;
+        padding: 5%;
+    }
+
+    .transactionsHistory {
+        padding: 5vh 5%;
+        background: white;
+    }
+
+    h4 {
+        color: $white;
+    }
+
+    h6 {
+        text-align: left;
+    }
+
+
+}

@@ -1,4 +1,14 @@
 <<<<<<< HEAD
+const express = require('express')
+const {showAllTransactions} = require('../use-cases/show-all-transactions')
+const {createNewTransaction} = require('../use-cases/addTransactions')
+const {removeTransaction} = require('../use-cases/delete-transaction')
+const {showDetailTransaction} = require('../use-cases/show-detail-transactions')
+const {updateTransaction} = require('../use-cases/edit-transactions')
+const transactionsRouter = express.Router()
+const { makeDoAuthMiddleware } = require("../auth/doAuthMiddleware");
+const doAuthMiddleware = makeDoAuthMiddleware("access");
+=======
 const express = require("express");
 const { showAllTransactions } = require("../use-cases/show-all-transactions");
 const { createNewTransaction } = require("../use-cases/add-transaction");
@@ -8,17 +18,8 @@ const {
 } = require("../use-cases/show-detail-transactions");
 const { makeDoAuthMiddleware } = require("../auth/doAuthMiddleware");
 const doAuthMiddleware = makeDoAuthMiddleware("access");
-=======
-const express = require('express')
-const {showAllTransactions} = require('../use-cases/show-all-transactions')
-const {createNewIncome} = require('../use-cases/addIncome')
-const {removeTransaction} = require('../use-cases/delete-transaction')
-const {showDetailTransaction} = require('../use-cases/show-detail-transactions')
-const {updateTransaction} = require('../use-cases/edit-transactions')
-const transactionsRouter = express.Router()
->>>>>>> 20ac91a7a222ee4b55936fb1b416fc07d768b03a
-
 const transactionsRouter = express.Router();
+>>>>>>> e9f8f44169d92952a509eb86d61f568b1e2137e4
 
 transactionsRouter.get("/all", doAuthMiddleware, (req, res) => {
   const userId = req.userClaims.sub;
@@ -56,7 +57,6 @@ transactionsRouter.get("/details/:id", doAuthMiddleware, (req, res) => {
   const transactionId = req.params.id;
   console.log(transactionId);
 
-<<<<<<< HEAD
   showDetailTransaction({ transactionId })
     .then((details) => res.json(details))
     .catch((err) => {
@@ -65,6 +65,19 @@ transactionsRouter.get("/details/:id", doAuthMiddleware, (req, res) => {
     });
 });
 
+transactionsRouter.put("/edit/:id", (req, res) => {
+  const transactionId = req.params.id;
+  const newTransactionValue = {
+    name: req.body.name,
+  };
+
+  updateTransaction({ transactionId, doneValue: newTransactionValue })
+    .then((updateTransaction) => res.json(updateTransaction))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Failed to update transaction" });
+    });
+});
 transactionsRouter.delete("/delete/:id", doAuthMiddleware, (req, res) => {
   const transactionId = req.params.id;
   removeTransaction({ transactionId })
@@ -76,21 +89,31 @@ transactionsRouter.delete("/delete/:id", doAuthMiddleware, (req, res) => {
         .json({ error: "Failed to remove transaction from database." });
     });
 });
-=======
+
+<<<<<<< HEAD
 transactionsRouter.put('/edit/:id', (req, res) =>{
     const transactionId = req.params.id;
     const newTransactionValue = {
         name: req.body.name,
     } 
-
     updateTransaction({transactionId, doneValue: newTransactionValue})
     .then(updateTransaction =>res.json(updateTransaction))
-    .catch(err =>{
-        console.log(err)
-        res.status(500).json({error: "Failed to update transaction"})
-    })
 })
->>>>>>> 20ac91a7a222ee4b55936fb1b416fc07d768b03a
+=======
+transactionsRouter.put("/edit/:id", (req, res) => {
+  const transactionId = req.params.id;
+  const newTransactionValue = {
+    name: req.body.name,
+  };
+
+  updateTransaction({ transactionId, doneValue: newTransactionValue })
+    .then((updateTransaction) => res.json(updateTransaction))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Failed to update transaction" });
+    });
+});
+>>>>>>> e9f8f44169d92952a509eb86d61f568b1e2137e4
 
 module.exports = {
   transactionsRouter,
