@@ -54,9 +54,9 @@ async function editTransaction(transactionId, newValue) {
 }
 
 module.exports = {
-  findTransactionById,
-  findAllTransactionsOfUser,
-  insertTransaction,
-  deleteTransaction,
-  editTransaction,
-};
+    findAllTransactionsOfUser,
+    findTransactionById,
+    insertTransaction,
+    deleteTransaction,
+    editTransaction
+}
