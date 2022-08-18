@@ -13,12 +13,18 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Add from "./pages/Add";
+import data from "./components/Data.js";
 
 function App() {
   const [token, setToken] = useState(null);
   console.log(token);
 
-  const [allFinObj, setAllFinObj] = useState([]);
+  const [allFinObj, setAllFinObj] = useState(data);
+
+  console.log(allFinObj);
+  // console.log(allFinObj);
+
+  // console.log(allFinObj);
 
   // useEffect(() => {
   //   fetch("http://localhost:9000/transactions/all")
@@ -27,7 +33,7 @@ function App() {
   //     .catch((err) => console.log(err));
   // }, []);
 
-  // console.log(allFinObj)
+  // console.log(allFinObj);
 
   return (
     <div className="App">
@@ -41,21 +47,17 @@ function App() {
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login setToken={setToken} />} />
-          <Route path="/home" element={<Home />} />
-          <Route
-            path="/wallet"
-            element={
-              <Wallet allFinObj={allFinObj} setAllFinObj={setAllFinObj} />
-            }
-          />
+          <Route path="/home" element={<Home allFinObj={allFinObj} />} />
+          <Route path="/wallet" element={<Wallet allFinObj={allFinObj} />} />
           <Route
             path="/statistic"
-            element={
-              <Statistic allFinObj={allFinObj} setAllFinObj={setAllFinObj} />
-            }
+            element={<Statistic allFinObj={allFinObj} />}
           />
 
-          <Route path="/:id" element={<TransactionsDetails />} />
+          <Route
+            path="/:id"
+            element={<TransactionsDetails allFinObj={allFinObj} />}
+          />
 
           <Route path="/profile" element={<Profile />} />
           <Route path="/add" element={<Add />} />

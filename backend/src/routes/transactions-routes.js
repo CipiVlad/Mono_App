@@ -51,6 +51,7 @@ transactionsRouter.get("/details/:id", doAuthMiddleware, (req, res) => {
       res.status(500).json({ error: "Failed to show detailed transaction" });
     });
 });
+
 transactionsRouter.delete("/delete/:id", doAuthMiddleware, (req, res) => {
   const transactionId = req.params.id;
   removeTransaction({ transactionId })

@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
 
-const TEN_MINUTES = 10 * 60;
-function createToken(user, duration = TEN_MINUTES, tokenType = "access") {
+// const TEN_MINUTES = 10 * 60;
+const TEN_DAYS = 10 * 24 * 60 * 60;
+function createToken(user, duration = TEN_DAYS, tokenType = "access") {
   const initatedAtTimestamp = Math.floor(Date.now() / 1000);
   const expiresAtTimestamp = initatedAtTimestamp + duration;
 
