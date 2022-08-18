@@ -7,7 +7,7 @@ import Donut from '../img/Donut.png'
 const Onboarding = () => {
   return (
     <div className="onboarding">
-      <div>
+      <div className="imageContainer">
         <img src={Coin} alt="coin" className="coin" />
         <img src={Donut} alt="coin" className="donut" />
         <img src={Guy} alt="the määän" />

@@ -1,0 +1,85 @@
+@import '../variables.scss';
+@import '../generals.scss';
+
+.login {
+    background: url("../img/lightBlueBackground.png") center / cover no-repeat;
+    background-position: 0 -30vh;
+    width: 20%;
+    margin: auto;
+    padding: 1%;
+
+    h1 {
+        padding-top: 5vh;
+    }
+
+    img {
+        width: 30%;
+        position: relative;
+    }
+
+    form {
+        background: white;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        margin-top: -10vh;
+        padding-top: 10vh;
+        display: block;
+
+        .formContent {
+            padding: 0 5% 10vh;
+
+            /* Email + Password */
+            label {
+                color: #666666;
+                font-weight: 500;
+                font-size: 12px;
+                display: block;
+                justify-content: flex-start;
+                text-align: left;
+                padding-bottom: 1vh;
+            }
+
+            input {
+                display: block;
+                justify-content: flex-start;
+                text-align: left;
+                padding: 1vh 4%;
+            }
+
+            input:nth-of-type(1) {
+                margin-bottom: 3vh;
+            }
+
+        }
+
+
+        button {
+            background: rgb(136, 152, 255);
+            background: linear-gradient(180deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100%);
+            border: none;
+            padding: 2vh 30%;
+            border-radius: 50px;
+            margin-bottom: 2vh;
+            color: white;
+        }
+
+        button:hover {
+            background: rgb(136, 152, 255);
+            background: linear-gradient(90deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100%);
+
+            a {
+                text-decoration: none;
+                color: #fff;
+            }
+        }
+    }
+
+    /* Have no account? */
+    p {
+        margin-top: 5vh;
+
+        a {
+            text-decoration: none;
+        }
+    }
+}
