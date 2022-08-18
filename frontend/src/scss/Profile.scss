@@ -1,13 +1,67 @@
-@import '../scss/variables.scss';
 @import '../scss/generals.scss';
 
 .profile {
-    width: 20%;
-    margin: auto;
-    background: $darkBlue;
+    // width: 20%;
+    // margin: auto;
+    border-radius: 0 0 400px 400px;
 
     .topBlueContainer {
+        background: $darkBlue;
         display: flex;
-        padding: 5vh 5%;
+        padding: 5vh 5% 20vh;
+        color: white;
+
+        h4 {
+            margin: auto;
+        }
     }
+
+    .profilePicture {
+        border-radius: 100%;
+        margin: -8vh 0 1vh 0;
+        width: 120px;
+        height: 120px;
+        position: relative;
+        background: white;
+        box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .name {
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .username {
+        font-weight: 600;
+        font-size: 14px;
+        color: $darkBlue;
+        margin-bottom: 5vh;
+    }
+
+    .profileContent {
+        text-align: left;
+        padding: 0 10%;
+
+        p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4vh;
+
+            /* Icons */
+            img {
+                margin-right: 5%;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            color: black;
+        }
+    }
+
+
+
 }

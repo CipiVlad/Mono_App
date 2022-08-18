@@ -1,0 +1,75 @@
+@import '../scss/generals.scss';
+
+.add {
+    background: $bgGreen;
+
+    .green {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 10vh;
+
+        h4 {
+            font-weight: 600;
+            font-size: 18px;
+        }
+    }
+
+    form {
+        background: white;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        margin-top: 5vh;
+        padding-top: 4vh;
+        display: block;
+        text-align: left;
+
+        .formContent {
+            padding: 0 5% 10vh;
+
+            .dropdown {
+                border-radius: 8px;
+                background: orange;
+                display: flex;
+                margin-bottom: 3vh;
+            }
+
+            /* Name + Amount + Date + Receipt */
+            label {
+                color: #666666;
+                font-weight: 500;
+                font-size: 12px;
+                display: block;
+                justify-content: flex-start;
+                text-align: left;
+                padding-bottom: 1vh;
+            }
+
+            input {
+                display: block;
+                justify-content: flex-start;
+                text-align: left;
+                padding: 1.5vh 4%;
+                width: 100%;
+                border-radius: 8px;
+            }
+
+            /* Amount Input */
+            input:nth-of-type(1) {
+                background: red;
+                margin-bottom: 3vh;
+            }
+
+            /* Date Input */
+            input:nth-of-type(2) {
+                background: blue;
+                margin-bottom: 4vh;
+            }
+
+            /* Receipt Input */
+            input[type="file"] {
+                border: 1px dashed #DDDDDD;
+            }
+        }
+    }
+}

@@ -28,7 +28,7 @@ const Add = () => {
     }
 
     return (
-        <div>
+        <div className="add">
             {/* ONCLICK INVISIBLE  && set income true/false*/}
             <div>
 
@@ -39,33 +39,31 @@ const Add = () => {
             <div>
                 <div className={income ? 'green' : 'pink'}>
                     <img src={left} alt="left" />
-                    <p>{income ? 'Add Income' : 'Add Expense'}</p>
+                    <h4>{income ? 'Add Income' : 'Add Expense'}</h4>
                     <img src={dots} alt="dots" />
                 </div>
 
 
                 <form action="">
 
-                    <p>NAME</p>
-                    <div onClick={handleDropdown}>
-                        <div> <p onClick={() => setName('Netflix')}>Netflix</p> {dropdown ? <img src={up} alt="up" /> : <img src={down} alt="down" />}  </div>
-                        <div style={dropdown ? { display: "block" } : { display: "none" }}>
-                            <p onClick={() => setName('Amazon')}>Amazon</p>
-                            <p onClick={() => setName('Youtube')}>Youtube</p>
-                            <p onClick={() => console.log('hier könnte es dynamisch werden')}>Add Your Transaction</p>
+                    <div className="formContent">
+                        <label>NAME</label>
+                        <div onClick={handleDropdown} className="dropdown">
+                            <div> <p onClick={() => setName('Netflix')}>Netflix</p> {dropdown ? <img src={up} alt="up" /> : <img src={down} alt="down" />}  </div>
+                            <div style={dropdown ? { display: "block" } : { display: "none" }}>
+                                <p onClick={() => setName('Amazon')}>Amazon</p>
+                                <p onClick={() => setName('Youtube')}>Youtube</p>
+                                <p onClick={() => console.log('hier könnte es dynamisch werden')}>Add Your Transaction</p>
+                            </div>
                         </div>
+                        <label htmlFor="amount">AMOUNT</label>
+                        <input type="text" name="amount" id="amount" placeholder="Amount" required value={amount} onChange={(e) => setAmount(e.target.value)} />
+                        <label htmlFor="date">DATE</label>
+                        <input type="date" name="date" id="date" required value={date} onChange={(e) => setDate(e.target.value)} />
+                        <label htmlFor="receipt">RECEIPT</label>
+                        <input type="file" name="receipt" id="receipt" placeholder="Add Receipt" value={receipt} onChange={(e) => setReceipt(e.target.value)} />
+                        <button onClick={handleTransaction}>Add Transaction</button>
                     </div>
-
-                    <label htmlFor="amount">AMOUNT</label>
-                    <input type="text" name="amount" id="amount" placeholder="Amount" required value={amount} onChange={(e) => setAmount(e.target.value)} />
-
-                    <label htmlFor="date">DATE</label>
-                    <input type="date" name="date" id="date" required value={date} onChange={(e) => setDate(e.target.value)} />
-
-                    <label htmlFor="receipt">RECEIPT</label>
-                    <input type="file" name="receipt" id="receipt" placeholder="Add Receipt" value={receipt} onChange={(e) => setReceipt(e.target.value)} />
-
-                    <button onClick={handleTransaction}>Add Transaction</button>
 
                 </form>
             </div>
