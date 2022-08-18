@@ -2,6 +2,8 @@ import React from 'react'
 
 const Home = ({ allFinObj, setAllFinObj }) => {
 
+console.log(allFinObj)
+
   return (
     <div>
       <section>

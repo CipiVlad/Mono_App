@@ -1,5 +1,11 @@
+
+
 const Statistic = ({ allFinObj, setAllFinObj }) => {
-    return (<div></div>);
+    return (<div>
+
+
+
+    </div >);
 }
 
 export default Statistic;

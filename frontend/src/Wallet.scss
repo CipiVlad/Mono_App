@@ -1,0 +1,77 @@
+@import './variables.scss';
+@import './generals.scss';
+// @import Placeholder '../img/Placeholder.png';
+
+// ===============================
+//             WALLET
+// ===============================
+
+.wallet {
+    width: 20%;
+    margin: auto;
+    background: $darkBlue;
+
+    .topBlueContainer {
+        display: flex;
+        padding: 5vh 5%;
+
+        h4 {
+            margin: auto;
+        }
+    }
+
+    .whiteContainer {
+        background: white;
+        border-radius: 30px 30px 0 0;
+
+        section {
+
+            /* Total Balance + Transactions Element Names */
+            p {
+                padding: 5vh 0 3vh 0;
+            }
+
+            /* $2,548.00 (zur Orientierung) */
+            h2 {
+                padding-bottom: 5vh;
+            }
+        }
+
+        .addPaySendGroup {
+            display: flex;
+            justify-content: space-evenly;
+            margin: auto;
+            padding-bottom: 10vh;
+            font-size: 14px;
+        }
+
+        /* Transactions History */
+        h6 {
+            text-align: left;
+            padding-bottom: 3vh;
+        }
+
+        .transactionsHistory {
+            padding: 0 5%;
+
+            .transactionsDetails {}
+
+            /* Transactions Date */
+            p:nth-of-type(1) {
+                color: #666666;
+            }
+
+            /* Transactions Income */
+            p:nth-of-type(2) {
+                color: $incomeGreen;
+                /* Farbe ist nur Platzhalter!! */
+            }
+
+        }
+
+        // .transactionsHistory::before {
+        //     content: 'Placeholder';
+        // }
+    }
+
+}
