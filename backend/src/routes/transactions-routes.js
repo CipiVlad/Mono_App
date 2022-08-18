@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-const express = require('express')
-const {showAllTransactions} = require('../use-cases/show-all-transactions')
-const {createNewTransaction} = require('../use-cases/addTransactions')
-const {removeTransaction} = require('../use-cases/delete-transaction')
-const {showDetailTransaction} = require('../use-cases/show-detail-transactions')
-const {updateTransaction} = require('../use-cases/edit-transactions')
-const transactionsRouter = express.Router()
-const { makeDoAuthMiddleware } = require("../auth/doAuthMiddleware");
-const doAuthMiddleware = makeDoAuthMiddleware("access");
-=======
 const express = require("express");
 const { showAllTransactions } = require("../use-cases/show-all-transactions");
 const { createNewTransaction } = require("../use-cases/add-transaction");
@@ -19,7 +8,6 @@ const {
 const { makeDoAuthMiddleware } = require("../auth/doAuthMiddleware");
 const doAuthMiddleware = makeDoAuthMiddleware("access");
 const transactionsRouter = express.Router();
->>>>>>> e9f8f44169d92952a509eb86d61f568b1e2137e4
 
 transactionsRouter.get("/all", doAuthMiddleware, (req, res) => {
   const userId = req.userClaims.sub;
@@ -90,30 +78,6 @@ transactionsRouter.delete("/delete/:id", doAuthMiddleware, (req, res) => {
     });
 });
 
-<<<<<<< HEAD
-transactionsRouter.put('/edit/:id', (req, res) =>{
-    const transactionId = req.params.id;
-    const newTransactionValue = {
-        name: req.body.name,
-    } 
-    updateTransaction({transactionId, doneValue: newTransactionValue})
-    .then(updateTransaction =>res.json(updateTransaction))
-})
-=======
-transactionsRouter.put("/edit/:id", (req, res) => {
-  const transactionId = req.params.id;
-  const newTransactionValue = {
-    name: req.body.name,
-  };
-
-  updateTransaction({ transactionId, doneValue: newTransactionValue })
-    .then((updateTransaction) => res.json(updateTransaction))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ error: "Failed to update transaction" });
-    });
-});
->>>>>>> e9f8f44169d92952a509eb86d61f568b1e2137e4
 
 module.exports = {
   transactionsRouter,
