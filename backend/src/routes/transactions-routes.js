@@ -40,7 +40,6 @@ transactionsRouter.post("/add", doAuthMiddleware, (req, res) => {
       res.status(500).json({ error: "Failed to add new income to database." });
     });
 });
-
 transactionsRouter.get("/details/:id", doAuthMiddleware, (req, res) => {
   const transactionId = req.params.id;
   console.log(transactionId);
@@ -50,20 +49,6 @@ transactionsRouter.get("/details/:id", doAuthMiddleware, (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(500).json({ error: "Failed to show detailed transaction" });
-    });
-});
-
-transactionsRouter.put("/edit/:id", (req, res) => {
-  const transactionId = req.params.id;
-  const newTransactionValue = {
-    name: req.body.name,
-  };
-
-  updateTransaction({ transactionId, doneValue: newTransactionValue })
-    .then((updateTransaction) => res.json(updateTransaction))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ error: "Failed to update transaction" });
     });
 });
 transactionsRouter.delete("/delete/:id", doAuthMiddleware, (req, res) => {
@@ -78,6 +63,18 @@ transactionsRouter.delete("/delete/:id", doAuthMiddleware, (req, res) => {
     });
 });
 
+transactionsRouter.put("/edit/:id", (req, res) => {
+  const transactionId = req.params.id;
+  const newTransactionValue = {
+    name: req.body.name,
+  };
+  updateTransaction({ transactionId, doneValue: newTransactionValue })
+    .then((updateTransaction) => res.json(updateTransaction))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Failed to update transaction" });
+    });
+});
 
 module.exports = {
   transactionsRouter,
