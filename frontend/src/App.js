@@ -1,6 +1,6 @@
 import "./App.scss";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-<<<<<<< HEAD
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
+
 import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import Nav from "./components/Nav";
@@ -12,32 +12,20 @@ import Splashscreen from "./pages/SplashScreen";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
-=======
-import { useState, useEffect } from 'react'
-import Home from './pages/Home';
-import Nav from './components/Nav';
-import Wallet from './pages/Wallet'
-import Statistic from './pages/Statistic'
-import TransactionsDetails from './pages/TransactionsDetails'
-import Onboarding from './pages/Onboarding'
-import Splashscreen from './pages/SplashScreen'
-import SignUp from './pages/SignUp'
-import Login from './pages/Login'
-import Profile from './pages/Profile'
-import Add from './pages/Add'
-
-
->>>>>>> 721c7dc983a4e24b52520837dbda495222385d3b
+import Add from "./pages/Add";
 
 function App() {
+  const [token, setToken] = useState(null);
+  console.log(token);
+
   const [allFinObj, setAllFinObj] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:9000/transactions/all")
-      .then((res) => res.json())
-      .then((alldata) => setAllFinObj(alldata))
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:9000/transactions/all")
+  //     .then((res) => res.json())
+  //     .then((alldata) => setAllFinObj(alldata))
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   // console.log(allFinObj)
 
@@ -47,8 +35,13 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home allFinObj={allFinObj} setAllFinObj={setAllFinObj} />}
+            element={<Navigate to={token ? "/home" : "/splash"} />}
           />
+          <Route path="/splash" element={<Splashscreen />} />
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login setToken={setToken} />} />
+          <Route path="/home" element={<Home />} />
           <Route
             path="/wallet"
             element={
@@ -64,22 +57,11 @@ function App() {
 
           <Route path="/:id" element={<TransactionsDetails />} />
 
-          <Route path="/splashscreen" element={<Splashscreen />} />
-          <Route path="/onboarding" element={<Onboarding />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-
           <Route path="/profile" element={<Profile />} />
-<<<<<<< HEAD
-=======
-
           <Route path="/add" element={<Add />} />
-
-
->>>>>>> 721c7dc983a4e24b52520837dbda495222385d3b
         </Routes>
       </BrowserRouter>
-      <Nav />
+      {/* <Nav /> */}
     </div>
   );
 }
