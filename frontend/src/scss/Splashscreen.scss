@@ -1,9 +1,10 @@
-<<<<<<< HEAD
+@import '../scss/generals.scss';
+
 .splashscreen {
     background: rgb(136, 152, 255);
     background: linear-gradient(180deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100%);
     margin: auto;
-    width: 20%;
+    // width: 20%;
     padding: 30vh 0;
 
     h1 {
@@ -12,5 +13,3 @@
         font-weight: bold;
     }
 }
-=======
->>>>>>> 861686078f354e647c85d4ae8eca6d2b49efa128

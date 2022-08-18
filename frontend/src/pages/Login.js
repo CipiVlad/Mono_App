@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../scss/Login.scss';
 import Guy from '../img/Guy.png';
 import { apiBaseUrl } from "../api/api";
 

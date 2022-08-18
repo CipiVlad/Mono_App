@@ -6,7 +6,6 @@ import users from '../img/users.png'
 import envelope from '../img/envelope.png'
 import shield from '../img/shield.png'
 import lock from '../img/lock.png'
-import '../Profile.scss'
 
 const Profile = () => {
 

@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../SplashScreen.scss";
 
 const SplashScreen = () => {
   const navigate = useNavigate();

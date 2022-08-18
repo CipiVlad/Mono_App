@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import left from '../img/chevron-left.png';
 import dots from '../img/threeDots.png';
 import up from '../img/chevron-up.png';
-import '../TransactionDetails.scss';
 import Icon from '../img/icon.png';
 
 const TransactionsDetails = () => {
