@@ -5,7 +5,11 @@
     background: url("./img/lightBlueBackground.png") center / cover no-repeat;
     background-position: 0 -30vh;
     width: 20%;
-    // margin: auto;
+    margin: auto;
+
+    .imageContainer {
+        background: url("./img/Ellipsen.png");
+    }
 
     .coin {
         position: absolute;
@@ -70,11 +74,21 @@
         background: rgb(136, 152, 255);
         background: linear-gradient(180deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100%);
         border: none;
-        padding: 2vh 20%;
+        padding: 2vh 30%;
         border-radius: 50px;
         margin-bottom: 5vh;
         // box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
         // width: 30%;
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+    }
+
+    button:hover {
+        background: rgb(136, 152, 255);
+        background: linear-gradient(90deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100%);
 
         a {
             text-decoration: none;

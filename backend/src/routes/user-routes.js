@@ -33,8 +33,8 @@ userRouter.get("/allUsers", doAuthMiddleware, async (_, res) => {
 userRouter.post("/register", pictureUploadMiddleware, async (req, res) => {
   try {
     const userInfo = req.body;
-    // const userImg = req.file.filename;
-    const user = await registerUser({ ...userInfo });
+    const userImg = req.file.originalname;
+    const user = await registerUser({ ...userInfo, userImg });
     res.json(user);
   } catch (error) {
     console.log(error);
@@ -44,26 +44,6 @@ userRouter.post("/register", pictureUploadMiddleware, async (req, res) => {
   }
 });
 userRouter.post("/login", async (req, res) => {
-  // try {
-  //   const result = await loginUser({
-  //     email: req.body.email,
-  //     password: req.body.password,
-  //   });
-
-  //   if (result.refreshToken) {
-  //     req.session.refreshToken = result.refreshToken;
-  //   }
-  //   console.log("result", result);
-  //   res.status(200).json(result);
-  // } catch (error) {
-  //   console.log(error);
-  //   res.status(500).json({
-  //     error: {
-  //       message: error ? error.message : "Unknown error while logging in.",
-  //     },
-  //   });
-  // }
-
   try {
     const { accessToken, refreshToken } = await loginUser({
       email: req.body.email,

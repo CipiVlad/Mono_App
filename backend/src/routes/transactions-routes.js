@@ -62,6 +62,7 @@ transactionsRouter.delete("/delete/:id", doAuthMiddleware, (req, res) => {
         .json({ error: "Failed to remove transaction from database." });
     });
 });
+
 transactionsRouter.put("/edit/:id", (req, res) => {
   const transactionId = req.params.id;
   const newTransactionValue = {
@@ -74,6 +75,7 @@ transactionsRouter.put("/edit/:id", (req, res) => {
       res.status(500).json({ error: "Failed to update transaction" });
     });
 });
+
 module.exports = {
   transactionsRouter,
 };
