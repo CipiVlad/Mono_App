@@ -7,6 +7,8 @@ const { showAllUser } = require("../use-cases/show-all-users");
 const { loginUser } = require("../use-cases/login-user");
 const { refreshUserToken } = require("../use-cases/refresh-user-token");
 const { showMyProfile } = require("../use-cases/show-my-profile");
+const { showWallet } = require("../use-cases/show-wallet");
+
 const userRouter = express.Router();
 
 const upload = multer();
@@ -49,10 +51,9 @@ userRouter.post("/login", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-    // if (refreshToken) {
-    //   console.log("refresh", refreshToken);
-    //   req.session.refreshToken = refreshToken;
-    // }
+    if (refreshToken) {
+      req.session.refreshToken = refreshToken;
+    }
     res.json({ accessToken, refreshToken });
   } catch (err) {
     console.log(err);
@@ -65,6 +66,20 @@ userRouter.get("/logout", async (req, res) => {
   req.session.refreshToken = null;
   res.status(200).json({});
 });
+
+userRouter.get("/showWallet", doAuthMiddleware, async (req, res) => {
+  try {
+    const userId = req.userClaims.sub;
+    const userWallet = await showWallet({ userId });
+    console.log(userWallet);
+    res.status(200).json(userWallet);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ err: { message: err ? err.message : "User not found..." } });
+  }
+});
+
 userRouter.get("/profileInfo", doAuthMiddleware, async (req, res) => {
   try {
     const userId = req.userClaims.sub; // an den token wird erkannt, um welchen user es sich handelt...
@@ -78,17 +93,14 @@ userRouter.get("/profileInfo", doAuthMiddleware, async (req, res) => {
 
 userRouter.post("/refreshtoken", doRefreshTokenMiddleware, async (req, res) => {
   try {
-    const result = await refreshUserToken({
-      refreshToken: req.session.refreshToken || req.body.refreshToken,
-    });
-    res.status(200).json(result);
+    const userId = req.userClaims.sub;
+
+    const accessToken = await refreshUserToken({ userId });
+    res.json({ token: accessToken });
   } catch (err) {
+    console.log(err);
     res.status(500).json({
-      err: {
-        message: err
-          ? err.message
-          : "Unknown error while refreshing your token.",
-      },
+      message: err.toString() || "Internal Server Error.",
     });
   }
 });

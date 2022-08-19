@@ -14,6 +14,8 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Add from "./pages/Add";
 import data from "./components/Data.js";
+import AuthRequired from "./components/AuthRequired";
+import { apiBaseUrl } from "./api/api";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -22,18 +24,23 @@ function App() {
   const [allFinObj, setAllFinObj] = useState(data);
 
   console.log(allFinObj);
-  // console.log(allFinObj);
+  const [walletInfo, setWalletInfo] = useState(null);
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
 
-  // console.log(allFinObj);
+    fetch(`${apiBaseUrl}/users/showWallet`, {
+      method: "GET",
+      headers: {
+        token: "JWT " + token,
+      },
+    })
+      .then((response) => response.json())
+      .then((walletResult) => setWalletInfo(walletResult));
+  }, [token]);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:9000/transactions/all")
-  //     .then((res) => res.json())
-  //     .then((alldata) => setAllFinObj(alldata))
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-  // console.log(allFinObj);
+  console.log(walletInfo);
 
   return (
     <div className="App">
@@ -47,20 +54,78 @@ function App() {
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login setToken={setToken} />} />
-          <Route path="/home" element={<Home allFinObj={allFinObj} />} />
-          <Route path="/wallet" element={<Wallet allFinObj={allFinObj} />} />
+
+          <Route
+            path="/home"
+            element={
+              <AuthRequired token={token} setToken={setToken}>
+                <Home
+                  token={token}
+                  setToken={setToken}
+                  allFinObj={allFinObj}
+                  walletInfo={walletInfo}
+                />
+              </AuthRequired>
+            }
+          />
+
+          <Route
+            path="/wallet"
+            element={
+              <AuthRequired token={token} setToken={setToken}>
+                <Wallet
+                  token={token}
+                  setToken={setToken}
+                  allFinObj={allFinObj}
+                />
+              </AuthRequired>
+            }
+          />
+
           <Route
             path="/statistic"
-            element={<Statistic allFinObj={allFinObj} />}
+            element={
+              <AuthRequired token={token} setToken={setToken}>
+                <Statistic
+                  token={token}
+                  setToken={setToken}
+                  allFinObj={allFinObj}
+                  walletInfo={walletInfo}
+                />
+              </AuthRequired>
+            }
           />
 
           <Route
-            path="/:id"
-            element={<TransactionsDetails allFinObj={allFinObj} />}
+            path="/detail/:id"
+            element={
+              <AuthRequired token={token} setToken={setToken}>
+                <TransactionsDetails
+                  token={token}
+                  setToken={setToken}
+                  allFinObj={allFinObj}
+                />
+              </AuthRequired>
+            }
           />
 
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/add" element={<Add />} />
+          <Route
+            path="/profile"
+            element={
+              <AuthRequired token={token} setToken={setToken}>
+                <Profile token={token} setToken={setToken} />
+              </AuthRequired>
+            }
+          />
+
+          <Route
+            path="/add"
+            element={
+              <AuthRequired token={token} setToken={setToken}>
+                <Add token={token} setToken={setToken} />
+              </AuthRequired>
+            }
+          />
         </Routes>
       </BrowserRouter>
       {/* <Nav /> */}

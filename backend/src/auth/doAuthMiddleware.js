@@ -8,6 +8,7 @@ function makeDoAuthMiddleware(validTokenType = "access") {
 
     try {
       const token = extractTokenFromRequest(req, validTokenType);
+
       if (!token) {
         return __unauthorized();
       }

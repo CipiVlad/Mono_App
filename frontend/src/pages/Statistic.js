@@ -1,15 +1,16 @@
-import BarChart from '../components/BarChart'
-import { useState } from 'react'
+import BarChart from "../components/BarChart";
+import { useState } from "react";
 
-const Statistic = ({ allFinObj, setAllFinObj }) => {
+const Statistic = ({ allFinObj, walletInfo }) => {
+  const [] = useState();
 
-    const [] = useState()
+  return (
+    <div>
+      <h1>Sta</h1>
 
-    return (<div>
-
-        <BarChart allFinObj={allFinObj} />
-
-    </div >);
-}
+      <BarChart allFinObj={allFinObj} />
+    </div>
+  );
+};
 
 export default Statistic;
