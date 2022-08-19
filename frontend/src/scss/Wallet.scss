@@ -1,10 +1,7 @@
-@import './variables.scss';
-@import './generals.scss';
+@import '../scss/generals.scss';
 // @import Placeholder '../img/Placeholder.png';
 
 .wallet {
-    width: 20%;
-    margin: auto;
     background: $darkBlue;
 
     .topBlueContainer {

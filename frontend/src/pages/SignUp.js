@@ -40,54 +40,56 @@ const SignUp = () => {
   }
 
   return (
-    <div>
+    <div className="signUp">
       <h1>Sign Up</h1>
       <form>
-        <label htmlFor="name">NAME</label>
-        <input
-          type="email"
-          name="name"
-          id="name"
-          placeholder="Full Name"
-          min="5"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+        <div className="formContent">
+          <label htmlFor="name">NAME</label>
+          <input
+            type="email"
+            name="name"
+            id="name"
+            placeholder="Full Name"
+            min="5"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
 
-        <label htmlFor="email">EMAIL</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Email"
-          min="5"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <label htmlFor="email">EMAIL</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            min="5"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <label htmlFor="password">PASSWORD</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-          min="8"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <label htmlFor="password">PASSWORD</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            min="8"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <label htmlFor="picture">PROFILE PICTURE</label>
-        <input
-          type="file"
-          name="picture"
-          id="picture"
-          onChange={(e) => setUserImg(e.target.files[0])}
-        />
+          <label htmlFor="picture">PROFILE PICTURE</label>
+          <input
+            type="file"
+            name="picture"
+            id="picture"
+            onChange={(e) => setUserImg(e.target.files[0])}
+          />
 
-        <button onClick={handleSignUp}>Sign Up</button>
+          <button onClick={handleSignUp}>Sign Up</button>
+        </div>
         {errorMessage && <p>{errorMessage}</p>}
         {success && <p>{success}</p>}
       </form>

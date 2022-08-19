@@ -1,34 +1,28 @@
 @import '../scss/generals.scss';
 
-.login {
+.signUp {
     background: url("../img/lightBlueBackground.png") center / cover no-repeat;
     background-position: 0 -30vh;
     // width: 20%;
     // margin: auto;
     padding: 0 5%;
 
-    h1 {
-        padding: 4vh 0 3vh;
-    }
 
-    /* the maaan */
-    img {
-        width: 40%;
-        position: relative;
+    h1 {
+        padding: 4vh 0 9vh;
     }
 
     form {
         background: white;
         box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
         border-radius: 20px;
-        margin-top: -14vh;
-        padding-top: 10vh;
+        padding-top: 4vh;
         display: block;
 
         .formContent {
-            padding: 5vh 5% 10vh;
+            padding: 0 5% 2vh;
 
-            /* Email + Password */
+            /* Name + Email + Password */
             label {
                 color: #666666;
                 font-weight: 500;
@@ -46,16 +40,12 @@
                 padding: 1.5vh 4%;
                 width: 100%;
                 border-radius: 8px;
-            }
-
-            /* Email Input */
-            input:nth-of-type(1) {
                 margin-bottom: 3vh;
             }
 
-            /* Password Input */
-            input:nth-of-type(2) {
-                margin-bottom: 4vh;
+            /* Profile Picture */
+            input[type="file"] {
+                border: 1px dashed #DDDDDD;
             }
         }
 
@@ -65,7 +55,6 @@
             border: none;
             padding: 2vh 35%;
             border-radius: 50px;
-            margin-bottom: 2vh;
             color: white;
             font-size: 18px;
             font-weight: 600;

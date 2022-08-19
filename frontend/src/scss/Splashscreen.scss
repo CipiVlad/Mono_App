@@ -1,0 +1,17 @@
+@import '../scss/generals.scss';
+
+
+.splashscreen {
+    background: rgb(136, 152, 255);
+    background: linear-gradient(180deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100%);
+    margin: auto;
+    padding: 50vh 0;
+    // width: 20%;
+    // height: 100vh;
+
+    h1 {
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-weight: bold;
+    }
+}
