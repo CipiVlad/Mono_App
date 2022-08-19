@@ -36,30 +36,54 @@
             margin: auto;
             padding-bottom: 10vh;
             font-size: 14px;
+            a{
+                text-decoration: none;
+                color: #000;
+            }
         }
 
         /* Transactions History */
-        h6 {
-            text-align: left;
-            padding-bottom: 3vh;
-        }
-
         .transactionsHistory {
-            padding: 0 5%;
-
-            .transactionsDetails {}
-
-            /* Transactions Date */
-            p:nth-of-type(1) {
-                color: #666666;
+            padding: 5vh 5%;
+            background: white;
+            h6 {
+                text-align: left;
+                font-size: 1rem;
             }
-
-            /* Transactions Income */
-            p:nth-of-type(2) {
-                color: $incomeGreen;
-                /* Farbe ist nur Platzhalter!! */
+            .transaction_header{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+    
+                a{
+                    text-decoration: none;
+                    font-size: 14px;
+                }
+           
             }
-
+            
+       
+    
+            .transaction_item{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 1vh 0;
+                .transaction_amount{
+                    font-size: 18px;
+                }
+                .transaction_headline{
+                    display: flex;
+                    align-items: center;
+                    .transaction_icon{
+                     padding: 0.8rem 1rem;
+                        background-color: #dddddd;
+                        opacity: 0.8;
+                        border-radius: 10px;
+                        margin-right: 8px;
+                    }
+                }
+            }
         }
 
         // .transactionsHistory::before {

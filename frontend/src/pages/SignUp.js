@@ -18,7 +18,7 @@ const SignUp = () => {
     formData.set("name", name);
     formData.set("email", email);
     formData.set("password", password);
-    formData.set("userImg", userImg);
+    formData.set("userImg", userImg, "originalname");
     fetch(`${apiBaseUrl}/users/register`, {
       method: "POST",
 

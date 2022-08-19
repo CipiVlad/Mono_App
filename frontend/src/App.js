@@ -48,7 +48,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Navigate to={token ? "/home" : "/splash"} />}
+            element={<Navigate to={token ? "/home" : "/onboarding"} />}
           />
           <Route path="/splash" element={<Splashscreen />} />
           <Route path="/onboarding" element={<Onboarding />} />
@@ -62,7 +62,6 @@ function App() {
                 <Home
                   token={token}
                   setToken={setToken}
-                  allFinObj={allFinObj}
                   walletInfo={walletInfo}
                 />
               </AuthRequired>
@@ -76,7 +75,7 @@ function App() {
                 <Wallet
                   token={token}
                   setToken={setToken}
-                  allFinObj={allFinObj}
+                  walletInfo={walletInfo}
                 />
               </AuthRequired>
             }
@@ -103,7 +102,7 @@ function App() {
                 <TransactionsDetails
                   token={token}
                   setToken={setToken}
-                  allFinObj={allFinObj}
+                  walletInfo={walletInfo}
                 />
               </AuthRequired>
             }
@@ -113,7 +112,11 @@ function App() {
             path="/profile"
             element={
               <AuthRequired token={token} setToken={setToken}>
-                <Profile token={token} setToken={setToken} />
+                <Profile
+                  walletInfo={walletInfo}
+                  token={token}
+                  setToken={setToken}
+                />
               </AuthRequired>
             }
           />
@@ -122,7 +125,11 @@ function App() {
             path="/add"
             element={
               <AuthRequired token={token} setToken={setToken}>
-                <Add token={token} setToken={setToken} />
+                <Add
+                  token={token}
+                  setToken={setToken}
+                  walletInfo={walletInfo}
+                />
               </AuthRequired>
             }
           />

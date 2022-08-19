@@ -1,19 +1,27 @@
 @import '../scss/generals.scss';
 
 .home {
-    // width: 20%;
-    // margin: auto;
-    background: $babyBlue;
-    border-radius: 0 0 60px 60px;
-    padding-top: 10vh;
-    height: 93vh;
+   
+    background: linear-gradient( 180deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100% );
+    border-radius: 0 0 20px 20px;
+    padding-top:  10vh;
+    height: 25vh;
+
+    .home_headline{
+        margin-bottom: 4vh;
+    }
 
     /* Blue Container */
     section {
         background-color: $darkBlue;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.245);
         border-radius: 20px;
         text-align: left;
         padding: 5%;
+        width: 90%;
+        margin: 0 auto;
+        transition: all 0.5s ease-in-out;
+      
 
         /* Total Balance headline */
         .headline {
@@ -43,12 +51,40 @@
 
         .topBlueContainerContent {
 
+            .income_expenses_container{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                h4{
+                    margin-bottom: 1vh;
+                  
+                    span{
+                        fill: #fff;
+                        margin-right: 5px;
+                        border-radius: 50px;
+                        padding:5px;
+                        background: rgba(255, 255, 255, 0.15);
+                         svg{
+                            width: 20px;
+                            height: 20px;
+                         }
+                    }
+                }
+
+                
+              
+            }
+
             /* Amount $ */
             h2 {
                 color: white;
                 font-weight: 700;
                 font-size: 30px;
                 padding-bottom: 3vh;
+            }
+            p{
+                color:#fff;
             }
 
         }
@@ -57,13 +93,48 @@
     .transactionsHistory {
         padding: 5vh 5%;
         background: white;
+        .transaction_header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            h6 {
+                text-align: left;
+                font-size: 1rem;
+            }
+
+            a{
+                text-decoration: none;
+                font-size: 14px;
+            }
+       
+        }
+        
+   
+
+        .transaction_item{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1vh 0;
+            .transaction_amount{
+                font-size: 18px;
+            }
+            .transaction_headline{
+                display: flex;
+                align-items: center;
+                .transaction_icon{
+                 padding: 0.8rem 1rem;
+                    background-color: #dddddd;
+                    opacity: 0.8;
+                    border-radius: 10px;
+                    margin-right: 8px;
+                }
+            }
+        }
     }
 
 
 
-    h6 {
-        text-align: left;
-    }
 
 
 }
