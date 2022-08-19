@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "../Onboarding.scss";
 import Guy from "../img/Guy.png";
 import Coin from "../img/Coin.png";
 import Donut from "../img/Donut.png";
@@ -10,7 +9,7 @@ const Onboarding = () => {
       <div className="imageContainer">
         <img src={Coin} alt="coin" className="coin" />
         <img src={Donut} alt="coin" className="donut" />
-        <img src={Guy} alt="the määän" />
+        <img src={Guy} alt="the määän" className="guy" />
       </div>
       <div>
         <h1>Spend Smarter</h1>
