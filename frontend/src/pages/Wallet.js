@@ -1,5 +1,5 @@
 import React from "react";
-import "../Wallet.scss";
+import "../scss/Wallet.scss";
 import Add from "../img/Add.png";
 import Pay from "../img/Pay.png";
 import Send from "../img/Send.png";

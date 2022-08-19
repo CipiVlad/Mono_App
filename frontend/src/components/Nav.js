@@ -4,7 +4,7 @@ import Stats from "../img/Stats.png";
 import Add from "../img/Addblue.png";
 import Wallet from "../img/Wallet.png";
 import Profile from "../img/User.png";
-import "../Nav.scss";
+import "../scss/Nav.scss";
 import { useNavigate } from "react-router-dom";
 
 const Nav = () => {

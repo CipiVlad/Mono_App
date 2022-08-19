@@ -1,6 +1,7 @@
 import BarChart from "../components/BarChart";
 import { useState } from "react";
 import DataExample from "../components/Data";
+import Nav from "../components/Nav";
 
 const Statistic = ({ allFinObj }) => {
   const day = DataExample.map((ele) => new Date(ele.createdAt).getDate()); // 0 = Sonntag =>19 Aug
@@ -32,9 +33,12 @@ const Statistic = ({ allFinObj }) => {
   });
 
   return (
-    <div>
-      <BarChart chartData={userData} />
-    </div>
+    <>
+      <div>
+        <BarChart chartData={userData} />
+      </div>
+      <Nav />
+    </>
   );
 };
 
