@@ -38,17 +38,13 @@ async function deleteTransaction(transactionId) {
 
 async function editTransaction(transactionId, transactionObject) {
   const db = await getDB();
-  const updateTransaction = db.collection(monoCollectionName).findOneAndUpdate(
-    { _id: ObjectId(transactionId) },
-    {
-      $set: {
-        transactionObject,
-      },
-    },
-    { returnDocument: "after" }
-  );
 
-  return updateTransaction;
+  return db
+    .collection(monoCollectionName)
+    .updateOne(
+      { _id: new ObjectId(transactionId) },
+      { $set: transactionObject }
+    );
 }
 
 module.exports = {

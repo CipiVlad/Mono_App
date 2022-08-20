@@ -34,18 +34,18 @@ const EditIncome = ({ token }) => {
   }, [token, id]);
 
   const deleteTransaction = () => {
-    //   fetch(`${apiBaseUrl}/transactions/delete/${id}`, {
-    //     method: "DELETE",
-    //     headers: {
-    //         token: "JWT " + token
-    //     },
-    // })
-    //     .then((response) => response.json())
-    //     .then((result) => {
-    //         if (result.acknowledged) {
-    //             navigate("/home")
-    //         }
-    //     })
+    fetch(`${apiBaseUrl}/transactions/delete/${id}`, {
+      method: "DELETE",
+      headers: {
+        token: "JWT " + token,
+      },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.acknowledged) {
+          navigate("/home");
+        }
+      });
     console.log(id);
   };
   const editTransaction = (e) => {
@@ -72,6 +72,7 @@ const EditIncome = ({ token }) => {
       });
 
     console.log(id);
+    console.log(name, amount, createdAt);
   };
 
   return (

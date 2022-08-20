@@ -64,10 +64,9 @@ const EditExpense = ({ token }) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        // if (result.acknowledged) {
-        //   navigate("/home");
-        // }
-        navigate("/home");
+        if (result.acknowledged) {
+          navigate("/home");
+        }
       });
 
     console.log(id);

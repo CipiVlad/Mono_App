@@ -1,7 +1,11 @@
 const { TransactionsDAO } = require("../db-access");
 
-function updateTransaction({ transactionId, newValue }) {
-  return TransactionsDAO.editTransaction(transactionId, newValue);
+async function updateTransaction({ transactionId, ...newValue }) {
+  const updatedTransaction = await TransactionsDAO.editTransaction(
+    transactionId,
+    newValue
+  );
+  return updatedTransaction;
 }
 
 module.exports = {

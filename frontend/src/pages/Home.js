@@ -27,6 +27,7 @@ const Home = ({ walletInfo }) => {
       : 0;
 
   console.log(expenses);
+  const totalBalance = income - expenses;
 
   return (
     <>
@@ -39,7 +40,7 @@ const Home = ({ walletInfo }) => {
             <img src={threeDots} alt="three dots" />
           </div>
           <div className="topBlueContainerContent">
-            <h2>$ {walletInfo && walletInfo.totalBalance.toFixed(2)}</h2>
+            <h2>$ {walletInfo && totalBalance.toFixed(2)}</h2>
             <div className="income_expenses_container">
               <div className="income">
                 <h4>

@@ -65,21 +65,40 @@ transactionsRouter.delete("/delete/:id", doAuthMiddleware, (req, res) => {
     });
 });
 
-transactionsRouter.put("/edit/:id", doAuthMiddleware, (req, res) => {
-  const transactionId = req.params.id;
-  const newTransactionValue = {
-    transactionId,
-    name: req.body.name,
-    amount: req.body.amount,
-    income: req.body.income === "false" ? false : true,
-    createdAt: new Date(req.body.createdAt).getTime(),
-  };
-  updateTransaction({ transactionId, transactionObject: newTransactionValue })
-    .then((updateTransaction) => res.json(updateTransaction))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ error: "Failed to update transaction" });
-    });
+transactionsRouter.put("/edit/:id", doAuthMiddleware, async (req, res) => {
+  // const transactionId = req.params.id;
+  // const newTransactionValue = {
+  //   transactionId,
+  //   " name": req.body.name,
+  //   " amount": req.body.amount,
+  //   income: req.body.income === "false" ? false : true,
+  //   createdAt: new Date(req.body.createdAt).getTime(),
+  // };
+
+  // updateTransaction({ transactionId, transactionObject: newTransactionValue })
+  //   .then((updateTransaction) => res.json(updateTransaction))
+  //   .catch((err) => {
+  //     console.log(err);
+  //     res.status(500).json({ error: "Failed to update transaction" });
+  //   });
+
+  try {
+    const transactionId = req.params.id;
+    const transactioUpdateInfo = {
+      transactionId,
+      name: req.body.name,
+      amount: Number(req.body.amount),
+      income: req.body.income,
+      createdAt: new Date(req.body.createdAt).getTime(),
+    };
+
+    const updatedTransaction = await updateTransaction(transactioUpdateInfo);
+    console.log(updatedTransaction);
+    res.json(updatedTransaction);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json("Unknown error while editing a Transaction.");
+  }
 });
 
 module.exports = {
