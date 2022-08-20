@@ -15,7 +15,7 @@ const EditIncome = () => {
   const [dropdown, setDropdown] = useState(false);
   return (
     <>
-      <div className="add">
+      <div className="edit_income">
         <div>
           <div className={income ? "green" : "pink"}>
             <img src={left} alt="left" />

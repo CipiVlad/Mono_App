@@ -99,7 +99,16 @@ const TransactionsDetails = ({ walletInfo, token }) => {
               Total <span>$ {detailTransaction.amount}</span>{" "}
             </p>
             <div className="buttonContainer">
-              <button>Edit</button>
+              <Link
+                to={
+                  detailTransaction.income
+                    ? `/editIncome/${id}`
+                    : `/editExpense/${id}`
+                }
+              >
+                {/* <button>Edit</button> */}
+                Edit
+              </Link>
             </div>
           </div>
         </div>
