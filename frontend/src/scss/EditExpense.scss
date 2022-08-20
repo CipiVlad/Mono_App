@@ -1,39 +1,51 @@
 @import '../scss/generals.scss';
 
-.edit_ecpense {
-    background: $bgRed;
-    height: 94vh;
+.edit_expense {
 
-    .green {
-        display: flex;
+  
+
+    .pink {
+        background: $bgRed;
+        border-radius: 0 0 20px 20px;
+        height: 25vh;
+    
         justify-content: space-between;
         align-items: center;
-        padding-top: 10vh;
+        padding: 3vh 2%;
+
+        .icon_expense{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2%;
+
+            .del_icon{
+                cursor: pointer;
+            }
+   
+        }
 
         h4 {
             font-weight: 600;
             font-size: 18px;
+            margin-top: 4vh;
         }
     }
 
     form {
+        position: relative;
+        top: -30px;
         background: white;
         box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
         border-radius: 20px ;   
-        margin-top: 5vh;
+ width: 80%;
+ margin: 0 auto;
         padding-top: 4vh;
         display: block;
         text-align: left;
 
         .formContent {
             padding: 0 5% 10vh;
-
-            .dropdown {
-                border-radius: 8px;
-                background: orange;
-                display: flex;
-                margin-bottom: 3vh;
-            }
 
             /* Name + Amount + Date + Receipt */
             label {
@@ -45,6 +57,9 @@
                 text-align: left;
                 padding-bottom: 1vh;
             }
+            label:nth-of-type(4) {
+            margin-top: 2vh;
+            }
 
             input {
                 display: block;
@@ -53,6 +68,7 @@
                 padding: 1.5vh 4%;
                 width: 100%;
                 border-radius: 8px;
+                border: #666666 1px solid;
             }
 
             /* Amount Input */
@@ -71,24 +87,21 @@
                 margin-bottom: 5vh;
             }
 
-            .buttonContainer {
-                margin: auto;
-
-                button {
-                    color: #666666;
-                    background: white;
-                    border: 1px solid #666666;
-                    // color: #F2F2F2;
-                    // background: white;
-                    // border: 1px solid #F2F2F2;
-                    border-radius: 40px;
-                    padding: 2vh 30%;
-                    margin: auto;
-                    width: 100%;
-                    font-size: 18px;
-                    margin-bottom: 2vh;
-                }
+            button {
+              
+                background: linear-gradient(180deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100%);
+                border: 1px solid #666666;
+                border-radius: 40px;
+                padding: 2vh 20%;
+                width: 100%;
+                margin: 0 auto;
+                font-size: 18px;
+                margin-bottom: 2vh;
+                cursor: pointer;
+                color: #fff;
             }
+
+            
         }
     }
 }
