@@ -52,10 +52,9 @@ const Home = ({ walletInfo }) => {
               </div>
               <div className="expenses">
                 <h4>
-                  {" "}
                   <span>
                     <ArrowDownIcon />
-                  </span>{" "}
+                  </span>
                   Expenses
                 </h4>
 
@@ -76,36 +75,38 @@ const Home = ({ walletInfo }) => {
             {walletInfo &&
               Array.isArray(walletInfo.transactions) &&
               walletInfo.transactions.map((ele, index) => (
-                <div className="transaction_item" key={index}>
-                  <div className="transaction_headline">
-                    <div className="transaction_icon">
-                      <h3>{ele.name.charAt(0)}</h3>
-                    </div>
-                    <div className="transaction_name_date">
-                      <h5>{ele.name}</h5>
-                      <p>
-                        {new Date(ele.createdAt).toLocaleDateString("de-DE", {
-                          year: "numeric",
-                          month: "2-digit",
-                          day: "2-digit",
-                        })}
-                      </p>
-                      {/* moment js */}
-                      {/* <p>
+                <Link to={`/detail/${ele._id}`}>
+                  <div className="transaction_item" key={index}>
+                    <div className="transaction_headline">
+                      <div className="transaction_icon">
+                        <h3>{ele.name.charAt(0)}</h3>
+                      </div>
+                      <div className="transaction_name_date">
+                        <h5>{ele.name}</h5>
+                        <p>
+                          {new Date(ele.createdAt).toLocaleDateString("de-DE", {
+                            year: "numeric",
+                            month: "2-digit",
+                            day: "2-digit",
+                          })}
+                        </p>
+                        {/* moment js */}
+                        {/* <p>
                         {new Date(ele.createdAt).toUTCString().slice(0, 17)}
                       </p> */}
+                      </div>
                     </div>
-                  </div>
 
-                  <p
-                    className="transaction_amount"
-                    style={
-                      ele.income ? { color: "#25A969" } : { color: "#F95B51" }
-                    }
-                  >
-                    {ele.income ? `+ $${ele.amount}` : `- $${ele.amount}`}
-                  </p>
-                </div>
+                    <p
+                      className="transaction_amount"
+                      style={
+                        ele.income ? { color: "#25A969" } : { color: "#F95B51" }
+                      }
+                    >
+                      {ele.income ? `+ $${ele.amount}` : `- $${ele.amount}`}
+                    </p>
+                  </div>
+                </Link>
               ))}
           </div>
         </div>

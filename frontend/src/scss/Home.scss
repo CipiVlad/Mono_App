@@ -2,10 +2,16 @@
 
 .home {
    
-    background: linear-gradient( 180deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100% );
+    background: linear-gradient(180deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100%);
     border-radius: 0 0 20px 20px;
     padding-top:  10vh;
     height: 25vh;
+
+
+    a{
+        text-decoration: none;
+      
+    }
 
     .home_headline{
         margin-bottom: 4vh;

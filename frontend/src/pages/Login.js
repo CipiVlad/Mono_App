@@ -1,7 +1,7 @@
 import "../scss/Login.scss";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Guy from "../img/Guy.png";
+import Man from "../img/man.png";
 import { apiBaseUrl } from "../api/api";
 
 const Login = ({ setToken }) => {
@@ -41,7 +41,7 @@ const Login = ({ setToken }) => {
   return (
     <div className="login">
       <h1>Login</h1>
-      <img src={Guy} alt="the määään" />
+      <img src={Man} alt="the määään" />
       <form>
         <div className="formContent">
           <label htmlFor="email">EMAIL</label>

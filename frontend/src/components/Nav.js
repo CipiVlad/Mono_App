@@ -4,6 +4,7 @@ import StatistikIcon from "./Icons/StatistikIcon";
 import PlusIcon from "./Icons/PlusIcon";
 import WalletIcon from "./Icons/WalletIcon";
 import ProfilIcon from "./Icons/ProfilIcon";
+import Wallet from "../img/Wallet.png";
 import "../scss/Nav.scss";
 import { NavLink } from "react-router-dom";
 
@@ -13,6 +14,7 @@ const Nav = () => {
       <NavLink to="/home" activeclassname="active">
         <HomeIcon />
       </NavLink>
+
       <NavLink to="/statistic" activeclassname="active">
         <StatistikIcon />
       </NavLink>

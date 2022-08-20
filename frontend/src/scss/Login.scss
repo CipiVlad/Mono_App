@@ -13,7 +13,12 @@
     img {
         width: 40%;
         position: relative;
+        animation: guy 3s infinite ease-in-out;
     }
+    @keyframes guy {
+        0%, 100% {  transform: translateY(0px)    }
+        50%   {  transform: translateY(-20px) }
+      }
 
     form {
         background: white;
@@ -90,4 +95,6 @@
             text-decoration: none;
         }
     }
+
+
 }
