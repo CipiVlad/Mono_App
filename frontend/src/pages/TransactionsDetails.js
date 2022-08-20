@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import left from "../img/chevron-left.png";
 import dots from "../img/threeDots.png";
 import up from "../img/chevron-up.png";
-import Icon from "../img/icon.png";
 import Nav from "../components/Nav";
 import Loading from "../components/Loading";
 import { apiBaseUrl } from "../api/api";
+import { Link } from "react-router-dom";
 
 const TransactionsDetails = ({ walletInfo, token }) => {
   const { id } = useParams();
@@ -30,7 +30,9 @@ const TransactionsDetails = ({ walletInfo, token }) => {
     <div>
       <div className="transactionDetails">
         <div className="topBlueContainer">
-          <img src={left} alt="left" />
+          <Link to={"/home"}>
+            <img src={left} alt="left" />
+          </Link>
           <h4>Transaction Details</h4>
           <img src={dots} alt="threeDots" />
         </div>

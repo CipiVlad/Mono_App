@@ -1,9 +1,7 @@
 import "./App.scss";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
-
 import { useState, useEffect } from "react";
 import Home from "./pages/Home";
-import Nav from "./components/Nav";
 import Wallet from "./pages/Wallet";
 import Statistic from "./pages/Statistic";
 import TransactionsDetails from "./pages/TransactionsDetails";
@@ -14,6 +12,8 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Add from "./pages/Add";
 import data from "./components/Data.js";
+import EditExpense from "./components/EditExpense";
+import EditIncome from "./components/EditIncome";
 import AuthRequired from "./components/AuthRequired";
 import { apiBaseUrl } from "./api/api";
 
@@ -132,9 +132,25 @@ function App() {
               </AuthRequired>
             }
           />
+
+          <Route
+            path="/editExpense/:id"
+            element={
+              <AuthRequired token={token} setToken={setToken}>
+                <EditExpense token={token} setToken={setToken} />
+              </AuthRequired>
+            }
+          />
+          <Route
+            path="/editIncome/:id"
+            element={
+              <AuthRequired token={token} setToken={setToken}>
+                <EditIncome token={token} setToken={setToken} />
+              </AuthRequired>
+            }
+          />
         </Routes>
       </BrowserRouter>
-      {/* <Nav /> */}
     </div>
   );
 }
