@@ -23,7 +23,6 @@ function App() {
 
   const [allFinObj, setAllFinObj] = useState(data);
 
-  console.log(allFinObj);
   const [walletInfo, setWalletInfo] = useState(null);
   useEffect(() => {
     if (!token) {

@@ -4,29 +4,27 @@ import left from "../img/chevron-left.png";
 import dots from "../img/threeDots.png";
 import up from "../img/chevron-up.png";
 import Icon from "../img/icon.png";
-import Nav from '../components/Nav';
+import Nav from "../components/Nav";
+import Loading from "../components/Loading";
+import { apiBaseUrl } from "../api/api";
 
-const TransactionsDetails = ({ allFinObj }) => {
+const TransactionsDetails = ({ walletInfo, token }) => {
   const { id } = useParams();
-  const [detailTransaction, setDetailTransaction] = useState([]);
+  const [detailTransaction, setDetailTransaction] = useState();
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:9000/transactions/details/${id}`)
-  //     .then(res => res.json())
-  //     .then(detailObj => setDetailTransaction(detailObj))
-  //     .catch(err => console.log(err))
-  // }, [id])
-
-  // console.log(detailTransaction)
-
-  console.log(allFinObj);
+  useEffect(() => {
+    fetch(`${apiBaseUrl}/transactions/details/${id}`, {
+      headers: {
+        token: "JWT " + token,
+      },
+    })
+      .then((res) => res.json())
+      .then((detailObj) => setDetailTransaction(detailObj))
+      .catch((err) => console.log(err));
+  }, [token, id]);
 
   if (detailTransaction === undefined) {
-    return (
-      <div>
-        <p>Loading...</p>
-      </div>
-    );
+    return <Loading />;
   }
   return (
     <div>
@@ -37,12 +35,21 @@ const TransactionsDetails = ({ allFinObj }) => {
           <img src={dots} alt="threeDots" />
         </div>
         <div className="whiteContainer">
-          <img src={Icon} alt="icon" className="icon" />
-          <p className="incomeOrExpense">
-            {" "}
+          {/* <img src={Icon} alt="icon" className="icon" /> */}
+          <div className="transaction_icon">
+            <h3>{detailTransaction && detailTransaction.name.charAt(0)}</h3>
+          </div>
+          <p
+            style={
+              detailTransaction.income
+                ? { color: "#25A969" }
+                : { color: "#F95B51" }
+            }
+            className="incomeOrExpense"
+          >
             {detailTransaction.income ? "Income" : "Expense"}
           </p>
-          <h2>$ </h2>
+          <h2>${detailTransaction && detailTransaction.amount.toFixed(2)} </h2>
           <div className="transactionDetailsContainer">
             <div className="headlineGroup">
               <h5>Transaction details </h5>
@@ -51,16 +58,35 @@ const TransactionsDetails = ({ allFinObj }) => {
             <div className="status">
               <p>
                 Status{" "}
-                <span className="spanIncomeOrExpense">{detailTransaction.income ? "Income" : "Expense"}</span>{" "}
+                <span
+                  style={
+                    detailTransaction.income
+                      ? { color: "#25A969" }
+                      : { color: "#F95B51" }
+                  }
+                  className="spanIncomeOrExpense"
+                >
+                  {detailTransaction.income ? "Income" : "Expense"}
+                </span>{" "}
               </p>
               <p>
                 From <span>{detailTransaction.name}</span>{" "}
               </p>
               <p>
-                Time <span>{detailTransaction.time}</span>{" "}
+                Time{" "}
+                <span>
+                  {new Date(detailTransaction.createdAt)
+                    .toUTCString()
+                    .slice(16, 30)}
+                </span>{" "}
               </p>
               <p>
-                Date <span>{detailTransaction.date}</span>{" "}
+                Date{" "}
+                <span>
+                  {new Date(detailTransaction.createdAt)
+                    .toUTCString()
+                    .slice(0, 17)}
+                </span>{" "}
               </p>
             </div>
             <p className="spending">
