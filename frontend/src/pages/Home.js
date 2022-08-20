@@ -79,7 +79,7 @@ const Home = ({ walletInfo }) => {
                   <div className="transaction_item" key={index}>
                     <div className="transaction_headline">
                       <div className="transaction_icon">
-                        <h3>{ele.name.charAt(0)}</h3>
+                        <h3>{ele.name}</h3>
                       </div>
                       <div className="transaction_name_date">
                         <h5>{ele.name}</h5>

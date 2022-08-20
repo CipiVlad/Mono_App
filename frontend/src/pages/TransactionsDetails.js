@@ -39,7 +39,7 @@ const TransactionsDetails = ({ walletInfo, token }) => {
         <div className="whiteContainer">
           {/* <img src={Icon} alt="icon" className="icon" /> */}
           <div className="transaction_icon">
-            <h3>{detailTransaction && detailTransaction.name.charAt(0)}</h3>
+            <h3>{detailTransaction && detailTransaction.name}</h3>
           </div>
           <p
             style={
@@ -51,7 +51,7 @@ const TransactionsDetails = ({ walletInfo, token }) => {
           >
             {detailTransaction.income ? "Income" : "Expense"}
           </p>
-          <h2>${detailTransaction && detailTransaction.amount.toFixed(2)} </h2>
+          <h2>${detailTransaction && detailTransaction.amount} </h2>
           <div className="transactionDetailsContainer">
             <div className="headlineGroup">
               <h5>Transaction details </h5>

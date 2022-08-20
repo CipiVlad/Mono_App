@@ -1,9 +1,9 @@
-const { TransactionsDAO } = require('../db-access');
+const { TransactionsDAO } = require("../db-access");
 
-function updateTransaction({transactionId,doneValue}){
-    return TransactionsDAO.editTransaction(transactionId,doneValue);
+function updateTransaction({ transactionId, newValue }) {
+  return TransactionsDAO.editTransaction(transactionId, newValue);
 }
 
-module.exports ={
-    updateTransaction
-}
+module.exports = {
+  updateTransaction,
+};

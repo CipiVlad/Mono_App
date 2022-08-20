@@ -22,7 +22,7 @@ const Wallet = ({ walletInfo }) => {
         <div className="whiteContainer">
           <section>
             <p>Total Balance</p>
-            <h2>{walletInfo && walletInfo.totalBalance.toFixed(2)}</h2>
+            <h2>{walletInfo && walletInfo.totalBalance}</h2>
           </section>
           <div className="addPaySendGroup">
             <div className="addGroup">
@@ -51,7 +51,7 @@ const Wallet = ({ walletInfo }) => {
                   <div className="transaction_item" key={index}>
                     <div className="transaction_headline">
                       <div className="transaction_icon">
-                        <h3> {ele.name.charAt(0)}</h3>
+                        <h3> {ele.name}</h3>
                       </div>
                       <div className="transaction_name_date">
                         <h5>{ele.name}</h5>

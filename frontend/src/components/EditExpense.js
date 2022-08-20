@@ -49,25 +49,26 @@ const EditExpense = ({ token }) => {
   const editTransaction = (e) => {
     e.preventDefault();
 
-    // const formData = new FormData()
-    // formData.set("name", name)
-    // formData.set("amount", amount)
-    // formData.set("createdAt", createdAt)
-    // formData.set("income", false)
+    const formData = new FormData();
+    formData.set("name", name);
+    formData.set("amount", amount);
+    formData.set("createdAt", createdAt);
+    formData.set("income", false);
 
-    // fetch(`${apiBaseUrl}/transactions/edit/${id}`, {
-    //   method: "PUT",
-    //   headers: {
-    //     token: "JWT " + token
-    //   },
-    //   body: formData
-    // })
-    //   .then((response) => response.json())
-    //   .then((result) => {
-    //     if (result.acknowledged) {
-    //       navigate("/home")
-    //     }
-    //   })
+    fetch(`${apiBaseUrl}/transactions/edit/${id}`, {
+      method: "PUT",
+      headers: {
+        token: "JWT " + token,
+      },
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        // if (result.acknowledged) {
+        //   navigate("/home");
+        // }
+        navigate("/home");
+      });
 
     console.log(id);
   };

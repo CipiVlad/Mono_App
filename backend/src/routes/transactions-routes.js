@@ -2,6 +2,7 @@ const express = require("express");
 const { showAllTransactions } = require("../use-cases/show-all-transactions");
 const { createNewTransaction } = require("../use-cases/add-transaction");
 const { removeTransaction } = require("../use-cases/delete-transaction");
+const { updateTransaction } = require("../use-cases/edit-transactions");
 const {
   showDetailTransaction,
 } = require("../use-cases/show-detail-transactions");
@@ -64,12 +65,16 @@ transactionsRouter.delete("/delete/:id", doAuthMiddleware, (req, res) => {
     });
 });
 
-transactionsRouter.put("/edit/:id", (req, res) => {
+transactionsRouter.put("/edit/:id", doAuthMiddleware, (req, res) => {
   const transactionId = req.params.id;
   const newTransactionValue = {
+    transactionId,
     name: req.body.name,
+    amount: req.body.amount,
+    income: req.body.income === "false" ? false : true,
+    createdAt: new Date(req.body.createdAt).getTime(),
   };
-  updateTransaction({ transactionId, doneValue: newTransactionValue })
+  updateTransaction({ transactionId, transactionObject: newTransactionValue })
     .then((updateTransaction) => res.json(updateTransaction))
     .catch((err) => {
       console.log(err);

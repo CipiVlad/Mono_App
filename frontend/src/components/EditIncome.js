@@ -55,7 +55,7 @@ const EditIncome = ({ token }) => {
     formData.set("name", name);
     formData.set("amount", amount);
     formData.set("createdAt", createdAt);
-    formData.set("income", false);
+    formData.set("income", true);
 
     fetch(`${apiBaseUrl}/transactions/edit/${id}`, {
       method: "PUT",
