@@ -11,7 +11,7 @@ const EditExpense = ({ token }) => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [createdAt, setCreatedAt] = useState("");
-  const [receipt, setReceipt] = useState();
+  const [img, setReceipt] = useState();
   const navigate = useNavigate();
 
   const { id } = useParams();
@@ -32,7 +32,7 @@ const EditExpense = ({ token }) => {
       });
   }, [token, id]);
 
-  console.log(receipt);
+  console.log(img);
 
   const deleteTransaction = () => {
     fetch(`${apiBaseUrl}/transactions/delete/${id}`, {
@@ -55,6 +55,7 @@ const EditExpense = ({ token }) => {
     formData.append("name", name);
     formData.append("amount", amount);
     formData.append("createdAt", createdAt);
+    formData.append("img", img, img.name);
     formData.append("income", false);
 
     fetch(`${apiBaseUrl}/transactions/edit/${id}`, {
@@ -129,7 +130,7 @@ const EditExpense = ({ token }) => {
               id="receipt"
               placeholder="Add Receipt"
               // value={receipt}
-              //   onChange={(e) => setReceipt(e.target.files[0])}
+              onChange={(e) => setReceipt(e.target.files[0])}
             />
             <button onClick={editTransaction}>Edit Transaction</button>
           </div>

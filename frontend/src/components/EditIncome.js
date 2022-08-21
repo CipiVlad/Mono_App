@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import left from "../img/chevron-left.png";
 import Delete from "../components/Icons/Delete";
-import down from "../img/chevron-downADD.png";
-import up from "../img/chevron-upADD.png";
 import Nav from "../components/Nav";
 import "../scss/EditIncome.scss";
 import { apiBaseUrl } from "../api/api";
@@ -15,7 +13,7 @@ const EditIncome = ({ token }) => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [createdAt, setCreatedAt] = useState("");
-  const [receipt, setReceipt] = useState();
+  const [img, setReceipt] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +27,7 @@ const EditIncome = ({ token }) => {
         setName(data.name);
         setAmount(data.amount);
         setCreatedAt(new Date(data.createdAt).toISOString().substring(0, 16)); //2022-05-26T12:23
-        // setReceipt(data.img);
+        setReceipt(data.img);
         console.log(data);
       });
   }, [token, id]);
@@ -133,8 +131,8 @@ const EditIncome = ({ token }) => {
               name="receipt"
               id="receipt"
               placeholder="Add Receipt"
-              value={receipt}
-              //   onChange={(e) => setReceipt(e.target.files[0])}
+              value={img}
+              onChange={(e) => setReceipt(e.target.files[0])}
             />
             <button onClick={editTransaction}>Edit Transaction</button>
           </div>

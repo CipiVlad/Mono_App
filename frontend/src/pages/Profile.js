@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import left from "../img/chevron-left.png";
 import userprofile from "../img/userProfile.png";
@@ -8,7 +7,6 @@ import shield from "../img/shield.png";
 import lock from "../img/lock.png";
 import Nav from "../components/Nav";
 import ProfilePicture from "../img/ProfilePicture.png";
-import Wallet from "./Wallet";
 import { apiBaseUrl } from "../api/api";
 
 const Profile = ({ walletInfo, setToken }) => {
@@ -30,15 +28,14 @@ const Profile = ({ walletInfo, setToken }) => {
           </Link>
           <h4>Profile</h4>
         </div>
-        {/* <div> */}
+
         <img
-          src={walletInfo && walletInfo.userImg}
+          // src={walletInfo && walletInfo.userImg}
+          src={ProfilePicture}
           alt={walletInfo && walletInfo.userImg}
           className="profilePicture"
         />
-        {/* hier nach Styling wieder reinnehmen */}
-        {/* <img src={userData} alt="profile picture" /> */}
-        {/* </div> */}
+
         <h2 className="name">{walletInfo && walletInfo.name}</h2>
         <p className="username">{walletInfo && walletInfo.email}</p>
         <div className="profileContent">

@@ -4,7 +4,6 @@ import StatistikIcon from "./Icons/StatistikIcon";
 import PlusIcon from "./Icons/PlusIcon";
 import WalletIcon from "./Icons/WalletIcon";
 import ProfilIcon from "./Icons/ProfilIcon";
-import Wallet from "../img/Wallet.png";
 import "../scss/Nav.scss";
 import { NavLink } from "react-router-dom";
 

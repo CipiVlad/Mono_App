@@ -55,7 +55,11 @@ const Wallet = ({ walletInfo }) => {
               <figcaption>Pay</figcaption>
             </div>
             <div className="sendGroup">
-              <a href="https://www.paypal.com/de/home" target="_blank">
+              <a
+                href="https://www.paypal.com/de/home"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img src={Send} alt="send" />
                 <figcaption>Send</figcaption>
               </a>
