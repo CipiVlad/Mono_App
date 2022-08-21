@@ -39,7 +39,9 @@ const TransactionsDetails = ({ walletInfo, token }) => {
         <div className="whiteContainer">
           {/* <img src={Icon} alt="icon" className="icon" /> */}
           <div className="transaction_icon">
-            <h3>{detailTransaction && detailTransaction.name.charAt(0)}</h3>
+            <h3>
+              {detailTransaction.name && detailTransaction.name.charAt(0)}
+            </h3>
           </div>
           <p
             style={
@@ -51,7 +53,9 @@ const TransactionsDetails = ({ walletInfo, token }) => {
           >
             {detailTransaction.income ? "Income" : "Expense"}
           </p>
-          <h2>${detailTransaction && detailTransaction.amount.toFixed(2)} </h2>
+          <h2>
+            ${detailTransaction.amount && detailTransaction.amount.toFixed(2)}{" "}
+          </h2>
           <div className="transactionDetailsContainer">
             <div className="headlineGroup">
               <h5>Transaction details </h5>
@@ -77,9 +81,10 @@ const TransactionsDetails = ({ walletInfo, token }) => {
               <p>
                 Time{" "}
                 <span>
-                  {new Date(detailTransaction.createdAt)
-                    .toUTCString()
-                    .slice(16, 30)}
+                  {new Date(detailTransaction.createdAt).toLocaleTimeString(
+                    [],
+                    { hour: "2-digit", minute: "2-digit" }
+                  )}
                 </span>{" "}
               </p>
               <p>
@@ -93,10 +98,19 @@ const TransactionsDetails = ({ walletInfo, token }) => {
             </div>
             <p className="spending">
               {detailTransaction.income ? "Earnings" : "Spending"}{" "}
-              <span>$ {detailTransaction.amount}</span>{" "}
+              <span>
+                ${" "}
+                {detailTransaction.amount &&
+                  detailTransaction.amount.toFixed(2)}
+              </span>{" "}
             </p>
             <p className="total">
-              Total <span>$ {detailTransaction.amount}</span>{" "}
+              Total{" "}
+              <span>
+                ${" "}
+                {detailTransaction.amount &&
+                  detailTransaction.amount.toFixed(2)}
+              </span>{" "}
             </p>
             <div className="buttonContainer">
               <Link

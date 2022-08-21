@@ -51,8 +51,14 @@ const Wallet = ({ walletInfo }) => {
               </Link>
             </div>
             <div className="payGroup">
-              <img src={Pay} alt="pay" />
-              <figcaption>Pay</figcaption>
+              <a
+                href="https://pay.google.com/intl/de_de/about/banks/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={Pay} alt="pay" />
+                <figcaption>Pay</figcaption>
+              </a>
             </div>
             <div className="sendGroup">
               <a
@@ -74,7 +80,7 @@ const Wallet = ({ walletInfo }) => {
                   <div className="transaction_item" key={index}>
                     <div className="transaction_headline">
                       <div className="transaction_icon">
-                        <h3> {ele.name.charAt(0)}</h3>
+                        <h3> {ele.name && ele.name.charAt(0)}</h3>
                       </div>
                       <div className="transaction_name_date">
                         <h5>{ele.name}</h5>

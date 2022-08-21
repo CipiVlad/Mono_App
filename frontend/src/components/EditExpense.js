@@ -51,19 +51,27 @@ const EditExpense = ({ token }) => {
   const editTransaction = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("amount", amount);
-    formData.append("createdAt", createdAt);
-    formData.append("img", img, img.name);
-    formData.append("income", false);
+    // const formData = new FormData();
+    // formData.append("name", name);
+    // formData.append("amount", amount);
+    // formData.append("createdAt", createdAt);
+    // formData.append("img", img);
+    // formData.append("income", false);
 
     fetch(`${apiBaseUrl}/transactions/edit/${id}`, {
       method: "PUT",
       headers: {
+        "Content-Type": "application/json",
         token: "JWT " + token,
       },
-      body: formData,
+      body: JSON.stringify({
+        name,
+        amount,
+        createdAt,
+        income: false,
+        img,
+      }),
+      // body: formData,
     })
       .then((response) => response.json())
       .then((result) => {

@@ -19,6 +19,7 @@ const EditIncome = ({ token }) => {
   useEffect(() => {
     fetch(`${apiBaseUrl}/transactions/details/${id}`, {
       headers: {
+        "Content-Type": "application/json",
         token: "JWT " + token,
       },
     })
@@ -42,29 +43,34 @@ const EditIncome = ({ token }) => {
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-
         navigate("/home");
-        // if (result.acknowledged) {
-        //   navigate("/home");
-        // }
       });
     console.log(id);
   };
   const editTransaction = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("amount", amount);
-    formData.append("createdAt", createdAt);
-    formData.append("income", true);
+    // const formData = new FormData();
+    // formData.append("name", name);
+    // formData.append("amount", amount);
+    // formData.append("createdAt", createdAt);
+    // formData.append("img", img);
+    // formData.append("income", false);
 
     fetch(`${apiBaseUrl}/transactions/edit/${id}`, {
       method: "PUT",
       headers: {
+        "Content-Type": "application/json",
         token: "JWT " + token,
       },
-      body: formData,
+      body: JSON.stringify({
+        name,
+        amount,
+        createdAt,
+        income: true,
+        img,
+      }),
+      // body: formData,
     })
       .then((response) => response.json())
       .then((result) => {
@@ -74,9 +80,7 @@ const EditIncome = ({ token }) => {
       });
 
     console.log(id);
-    console.log(name, amount, createdAt);
   };
-
   return (
     <>
       <div className="edit_income">
@@ -131,7 +135,7 @@ const EditIncome = ({ token }) => {
               name="receipt"
               id="receipt"
               placeholder="Add Receipt"
-              value={img}
+              //   value={img}
               onChange={(e) => setReceipt(e.target.files[0])}
             />
             <button onClick={editTransaction}>Edit Transaction</button>

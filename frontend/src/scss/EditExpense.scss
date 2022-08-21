@@ -99,6 +99,11 @@
                 margin-bottom: 2vh;
                 cursor: pointer;
                 color: #fff;
+
+                &:active{
+                    background: $bgRed;
+                    color: white;
+                }
             }
 
             

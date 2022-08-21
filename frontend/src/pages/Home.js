@@ -40,7 +40,7 @@ const Home = ({ walletInfo }) => {
             <img src={threeDots} alt="three dots" />
           </div>
           <div className="topBlueContainerContent">
-            <h2>$ {walletInfo && totalBalance.toFixed(2)}</h2>
+            <h2>$ {totalBalance && totalBalance.toFixed(2)}</h2>
             <div className="income_expenses_container">
               <div className="income">
                 <h4>
@@ -49,7 +49,7 @@ const Home = ({ walletInfo }) => {
                   </span>
                   Income
                 </h4>
-                <p>$ {income.toFixed(2)}</p>
+                <p>$ {income && income.toFixed(2)}</p>
               </div>
               <div className="expenses">
                 <h4>
@@ -59,7 +59,7 @@ const Home = ({ walletInfo }) => {
                   Expenses
                 </h4>
 
-                <p>$ {expenses.toFixed(2)}</p>
+                <p>$ {expenses && expenses.toFixed(2)}</p>
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@ const Home = ({ walletInfo }) => {
                   <div className="transaction_item" key={index}>
                     <div className="transaction_headline">
                       <div className="transaction_icon">
-                        <h3>{ele.name.charAt(0)}</h3>
+                        <h3>{ele.name && ele.name.charAt(0)}</h3>
                       </div>
                       <div className="transaction_name_date">
                         <h5>{ele.name}</h5>
@@ -104,7 +104,9 @@ const Home = ({ walletInfo }) => {
                         ele.income ? { color: "#25A969" } : { color: "#F95B51" }
                       }
                     >
-                      {ele.income ? `+ $${ele.amount}` : `- $${ele.amount}`}
+                      {ele.income
+                        ? `+ $${ele.amount.toFixed(2)}`
+                        : `- $${ele.amount.toFixed(2)}`}
                     </p>
                   </div>
                 </Link>

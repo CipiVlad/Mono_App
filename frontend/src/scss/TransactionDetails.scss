@@ -137,6 +137,11 @@ div {
                         font-size: 18px;
                         margin-bottom: 2vh;
                         text-decoration: none;
+
+                        &:active{
+                            background: linear-gradient(180deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100%);
+                            color: white;
+                        }
                     }
                 }
             }
