@@ -8,6 +8,25 @@ import Nav from "../components/Nav";
 import { Link } from "react-router-dom";
 
 const Wallet = ({ walletInfo }) => {
+  const income =
+    walletInfo && Array.isArray(walletInfo.transactions)
+      ? walletInfo.transactions
+          .filter((t) => t.income === true)
+          .map((t) => t.amount)
+          .reduce((sum, amount) => sum + amount, 0)
+      : 0;
+
+  console.log(income);
+  const expenses =
+    walletInfo && Array.isArray(walletInfo.transactions)
+      ? walletInfo.transactions
+          .filter((f) => f.income === false)
+          .map((f) => f.amount)
+          .reduce((sum, amount) => sum + amount, 0)
+      : 0;
+
+  console.log(expenses);
+  const totalBalance = (income - expenses).toFixed(2);
   return (
     <>
       <div className="wallet">
@@ -22,7 +41,7 @@ const Wallet = ({ walletInfo }) => {
         <div className="whiteContainer">
           <section>
             <p>Total Balance</p>
-            <h2>{walletInfo && walletInfo.totalBalance}</h2>
+            <h2>${walletInfo && totalBalance}</h2>
           </section>
           <div className="addPaySendGroup">
             <div className="addGroup">
@@ -51,7 +70,7 @@ const Wallet = ({ walletInfo }) => {
                   <div className="transaction_item" key={index}>
                     <div className="transaction_headline">
                       <div className="transaction_icon">
-                        <h3> {ele.name}</h3>
+                        <h3> {ele.name.charAt(0)}</h3>
                       </div>
                       <div className="transaction_name_date">
                         <h5>{ele.name}</h5>

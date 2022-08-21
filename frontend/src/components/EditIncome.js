@@ -10,13 +10,14 @@ import "../scss/EditIncome.scss";
 import { apiBaseUrl } from "../api/api";
 
 const EditIncome = ({ token }) => {
+  const { id } = useParams();
+  console.log(id);
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [createdAt, setCreatedAt] = useState("");
   const [receipt, setReceipt] = useState();
   const navigate = useNavigate();
 
-  const { id } = useParams();
   useEffect(() => {
     fetch(`${apiBaseUrl}/transactions/details/${id}`, {
       headers: {
@@ -42,9 +43,12 @@ const EditIncome = ({ token }) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        if (result.acknowledged) {
-          navigate("/home");
-        }
+        console.log(result);
+
+        navigate("/home");
+        // if (result.acknowledged) {
+        //   navigate("/home");
+        // }
       });
     console.log(id);
   };
@@ -52,10 +56,10 @@ const EditIncome = ({ token }) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.set("name", name);
-    formData.set("amount", amount);
-    formData.set("createdAt", createdAt);
-    formData.set("income", true);
+    formData.append("name", name);
+    formData.append("amount", amount);
+    formData.append("createdAt", createdAt);
+    formData.append("income", true);
 
     fetch(`${apiBaseUrl}/transactions/edit/${id}`, {
       method: "PUT",

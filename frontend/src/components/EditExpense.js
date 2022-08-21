@@ -15,6 +15,7 @@ const EditExpense = ({ token }) => {
   const navigate = useNavigate();
 
   const { id } = useParams();
+  console.log(id);
   useEffect(() => {
     fetch(`${apiBaseUrl}/transactions/details/${id}`, {
       headers: {
@@ -26,34 +27,35 @@ const EditExpense = ({ token }) => {
         setName(data.name);
         setAmount(data.amount);
         setCreatedAt(new Date(data.createdAt).toISOString().substring(0, 16)); //2022-05-26T12:23
-        // setImage(data.img);
+        setReceipt(data.img);
         console.log(data);
       });
   }, [token, id]);
 
+  console.log(receipt);
+
   const deleteTransaction = () => {
-    //   fetch(`${apiBaseUrl}/transactions/delete/${id}`, {
-    //     method: "DELETE",
-    //     headers: {
-    //         token: "JWT " + token
-    //     },
-    // })
-    //     .then((response) => response.json())
-    //     .then((result) => {
-    //         if (result.acknowledged) {
-    //             navigate("/home")
-    //         }
-    //     })
+    fetch(`${apiBaseUrl}/transactions/delete/${id}`, {
+      method: "DELETE",
+      headers: {
+        token: "JWT " + token,
+      },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        navigate("/home");
+      });
     console.log(id);
   };
   const editTransaction = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.set("name", name);
-    formData.set("amount", amount);
-    formData.set("createdAt", createdAt);
-    formData.set("income", false);
+    formData.append("name", name);
+    formData.append("amount", amount);
+    formData.append("createdAt", createdAt);
+    formData.append("income", false);
 
     fetch(`${apiBaseUrl}/transactions/edit/${id}`, {
       method: "PUT",
@@ -126,7 +128,7 @@ const EditExpense = ({ token }) => {
               name="receipt"
               id="receipt"
               placeholder="Add Receipt"
-              value={receipt}
+              // value={receipt}
               //   onChange={(e) => setReceipt(e.target.files[0])}
             />
             <button onClick={editTransaction}>Edit Transaction</button>

@@ -92,8 +92,10 @@ transactionsRouter.put("/edit/:id", doAuthMiddleware, async (req, res) => {
       createdAt: new Date(req.body.createdAt).getTime(),
     };
 
+    console.log("transactioUpdateInfo", transactioUpdateInfo);
+
     const updatedTransaction = await updateTransaction(transactioUpdateInfo);
-    console.log(updatedTransaction);
+    console.log("updatedTransaction", updatedTransaction);
     res.json(updatedTransaction);
   } catch (error) {
     console.log(error);
