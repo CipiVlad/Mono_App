@@ -11,8 +11,6 @@ const { showWallet } = require("../use-cases/show-wallet");
 
 const userRouter = express.Router();
 
-const upload = multer();
-const pictureUploadMiddleware = upload.single("userImg");
 const doAuthMiddleware = makeDoAuthMiddleware("access");
 const doRefreshTokenMiddleware = makeDoAuthMiddleware("refresh");
 
@@ -32,7 +30,18 @@ userRouter.get("/allUsers", doAuthMiddleware, async (_, res) => {
   }
 });
 
-userRouter.post("/register", pictureUploadMiddleware, async (req, res) => {
+const storage = multer.diskStorage({
+  destination: function (_, _, cb) {
+    cb(null, "uploads");
+  },
+  filename: function (_, file, cb) {
+    cb(null, Date.now() + "_" + file.originalname); //Appending extension
+  },
+});
+const upload = multer({ storage });
+const uploadMiddleware = upload.single("userImg");
+
+userRouter.post("/register", uploadMiddleware, async (req, res) => {
   try {
     const userInfo = req.body;
     const userImg = req.file.originalname;

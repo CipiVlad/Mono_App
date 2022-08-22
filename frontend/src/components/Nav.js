@@ -1,21 +1,35 @@
 import React from "react";
-import Home from "../img/Home.png";
-import Stats from "../img/Stats.png";
-import Add from "../img/Addblue.png";
-import Wallet from "../img/Wallet.png";
-import Profile from "../img/User.png";
+import HomeIcon from "./Icons/HomeIcon";
+import StatistikIcon from "./Icons/StatistikIcon";
+import PlusIcon from "./Icons/PlusIcon";
+import WalletIcon from "./Icons/WalletIcon";
+import ProfilIcon from "./Icons/ProfilIcon";
 import "../scss/Nav.scss";
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
-  const navigate = useNavigate();
   return (
     <div className="nav">
-      <img onClick={() => navigate("/home")} src={Home} alt="home" />
-      <img onClick={() => navigate("/statistic")} src={Stats} alt="stats" />
-      <img onClick={() => navigate("/add")} src={Add} alt="add" />
-      <img onClick={() => navigate("/wallet")} src={Wallet} alt="wallet" />
-      <img onClick={() => navigate("/profile")} src={Profile} alt="profile" />
+      <NavLink to="/home" activeclassname="active">
+        <HomeIcon />
+      </NavLink>
+
+      <NavLink to="/statistic" activeclassname="active">
+        <StatistikIcon />
+      </NavLink>
+
+      <NavLink to="/add" activeclassname="active">
+        <div className="add_btn">
+          <PlusIcon />
+        </div>
+      </NavLink>
+
+      <NavLink to="/wallet" activeclassname="active">
+        <WalletIcon />
+      </NavLink>
+      <NavLink to="/profile" activeclassname="active">
+        <ProfilIcon />
+      </NavLink>
     </div>
   );
 };

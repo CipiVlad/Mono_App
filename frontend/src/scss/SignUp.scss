@@ -41,11 +41,12 @@
                 width: 100%;
                 border-radius: 8px;
                 margin-bottom: 3vh;
+                border: #dddddd 1px solid;
             }
 
             /* Profile Picture */
             input[type="file"] {
-                border: 1px dashed #DDDDDD;
+                border: 1px dashed #dddddd;
             }
         }
 

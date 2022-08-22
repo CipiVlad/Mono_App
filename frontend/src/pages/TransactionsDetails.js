@@ -3,46 +3,59 @@ import { useState, useEffect } from "react";
 import left from "../img/chevron-left.png";
 import dots from "../img/threeDots.png";
 import up from "../img/chevron-up.png";
-import Icon from "../img/icon.png";
-import Nav from '../components/Nav';
+import Nav from "../components/Nav";
+import Loading from "../components/Loading";
+import { apiBaseUrl } from "../api/api";
+import { Link } from "react-router-dom";
 
-const TransactionsDetails = ({ allFinObj }) => {
+const TransactionsDetails = ({ walletInfo, token }) => {
   const { id } = useParams();
-  const [detailTransaction, setDetailTransaction] = useState([]);
+  const [detailTransaction, setDetailTransaction] = useState();
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:9000/transactions/details/${id}`)
-  //     .then(res => res.json())
-  //     .then(detailObj => setDetailTransaction(detailObj))
-  //     .catch(err => console.log(err))
-  // }, [id])
-
-  // console.log(detailTransaction)
-
-  console.log(allFinObj);
-
+  useEffect(() => {
+    fetch(`${apiBaseUrl}/transactions/details/${id}`, {
+      headers: {
+        token: "JWT " + token,
+      },
+    })
+      .then((res) => res.json())
+      .then((detailObj) => setDetailTransaction(detailObj))
+      .catch((err) => console.log(err));
+  }, [token, id]);
+  console.log(detailTransaction);
   if (detailTransaction === undefined) {
-    return (
-      <div>
-        <p>Loading...</p>
-      </div>
-    );
+    return <Loading />;
   }
   return (
     <div>
       <div className="transactionDetails">
         <div className="topBlueContainer">
-          <img src={left} alt="left" />
+          <Link to={"/home"}>
+            <img src={left} alt="left" />
+          </Link>
           <h4>Transaction Details</h4>
           <img src={dots} alt="threeDots" />
         </div>
         <div className="whiteContainer">
-          <img src={Icon} alt="icon" className="icon" />
-          <p className="incomeOrExpense">
-            {" "}
+          {/* <img src={Icon} alt="icon" className="icon" /> */}
+          <div className="transaction_icon">
+            <h3>
+              {detailTransaction.name && detailTransaction.name.charAt(0)}
+            </h3>
+          </div>
+          <p
+            style={
+              detailTransaction.income
+                ? { color: "#25A969" }
+                : { color: "#F95B51" }
+            }
+            className="incomeOrExpense"
+          >
             {detailTransaction.income ? "Income" : "Expense"}
           </p>
-          <h2>$ </h2>
+          <h2>
+            ${detailTransaction.amount && detailTransaction.amount.toFixed(2)}{" "}
+          </h2>
           <div className="transactionDetailsContainer">
             <div className="headlineGroup">
               <h5>Transaction details </h5>
@@ -51,27 +64,65 @@ const TransactionsDetails = ({ allFinObj }) => {
             <div className="status">
               <p>
                 Status{" "}
-                <span className="spanIncomeOrExpense">{detailTransaction.income ? "Income" : "Expense"}</span>{" "}
+                <span
+                  style={
+                    detailTransaction.income
+                      ? { color: "#25A969" }
+                      : { color: "#F95B51" }
+                  }
+                  className="spanIncomeOrExpense"
+                >
+                  {detailTransaction.income ? "Income" : "Expense"}
+                </span>{" "}
               </p>
               <p>
                 From <span>{detailTransaction.name}</span>{" "}
               </p>
               <p>
-                Time <span>{detailTransaction.time}</span>{" "}
+                Time{" "}
+                <span>
+                  {new Date(detailTransaction.createdAt).toLocaleTimeString(
+                    [],
+                    { hour: "2-digit", minute: "2-digit" }
+                  )}
+                </span>{" "}
               </p>
               <p>
-                Date <span>{detailTransaction.date}</span>{" "}
+                Date{" "}
+                <span>
+                  {new Date(detailTransaction.createdAt)
+                    .toUTCString()
+                    .slice(0, 17)}
+                </span>{" "}
               </p>
             </div>
             <p className="spending">
               {detailTransaction.income ? "Earnings" : "Spending"}{" "}
-              <span>$ {detailTransaction.amount}</span>{" "}
+              <span>
+                ${" "}
+                {detailTransaction.amount &&
+                  detailTransaction.amount.toFixed(2)}
+              </span>{" "}
             </p>
             <p className="total">
-              Total <span>$ {detailTransaction.amount}</span>{" "}
+              Total{" "}
+              <span>
+                ${" "}
+                {detailTransaction.amount &&
+                  detailTransaction.amount.toFixed(2)}
+              </span>{" "}
             </p>
             <div className="buttonContainer">
-              <button>Edit</button>
+              <Link
+                to={
+                  detailTransaction.income
+                    ? `/editIncome/${detailTransaction._id}`
+                    : `/editExpense/${detailTransaction._id}`
+                }
+              >
+                {/* <button>Edit</button> */}
+                Edit
+              </Link>
             </div>
           </div>
         </div>

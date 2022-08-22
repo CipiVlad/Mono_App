@@ -1,13 +1,13 @@
 @import '../scss/generals.scss';
 
 .profile {
-    // width: 20%;
-    // margin: auto;
-    height: 93vh;
+
     border-radius: 0 0 400px 400px;
 
     .topBlueContainer {
         background: $darkBlue;
+        border-radius: 0 0 20px 20px;
+        height: 25vh;
         display: flex;
         padding: 5vh 5% 20vh;
         color: white;
@@ -18,11 +18,11 @@
     }
 
     .profilePicture {
+        position: relative;
+        top: -50px;
         border-radius: 100%;
-        margin: -8vh 0 1vh 0;
         width: 120px;
         height: 120px;
-        position: relative;
         background: white;
         box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1);
     }
@@ -36,7 +36,7 @@
         font-weight: 600;
         font-size: 14px;
         color: $darkBlue;
-        margin-bottom: 5vh;
+        margin-bottom: 2vh;
     }
 
     .profileContent {

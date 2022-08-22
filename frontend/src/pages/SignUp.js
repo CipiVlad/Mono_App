@@ -15,10 +15,10 @@ const SignUp = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.set("name", name);
-    formData.set("email", email);
-    formData.set("password", password);
-    formData.set("userImg", userImg);
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("userImg", userImg, userImg.name);
     fetch(`${apiBaseUrl}/users/register`, {
       method: "POST",
 
