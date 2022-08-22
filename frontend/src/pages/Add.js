@@ -1,42 +1,52 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import left from "../img/chevron-left.png";
 import dots from "../img/threeDots.png";
-import down from "../img/chevron-downADD.png";
-import up from "../img/chevron-upADD.png";
 import Nav from "../components/Nav";
+import { IoAddCircleOutline } from "react-icons/io5";
 
-const Add = () => {
+const Add = ({ token,setWalletInfo }) => {
   const [income, setIncome] = useState(true);
   const [name, setName] = useState("");
-  const [amount, setAmount] = useState("");
-  const [date, setDate] = useState("");
-  const [receipt, setReceipt] = useState([]);
+  const [amount, setAmount] = useState();
+  const [createdAt, setCreatedAt] = useState("");
+  const [img, setImg] = useState("");
 
   const [dropdown, setDropdown] = useState(false);
-
   function handleDropdown() {
     setDropdown(!dropdown);
     console.log(dropdown);
   }
   function handleTransaction(e) {
     e.preventDefault();
-    console.log(income);
-    console.log(name);
-    console.log(amount);
-    console.log(date);
+    fetch('http://localhost:9000/transactions/add', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json',
+              token: "JWT " + token,
+            },
+            body: JSON.stringify({
+              income,
+              amount,
+              name,
+              createdAt,
+              img
+            })
+        })
+            .then((response) => response.json(), window.location.reload(true))
+            .then((addedTransaction) => setWalletInfo((previous) => [...previous, addedTransaction]))
   }
 
   return (
     <>
-      <div className="add">
-        {/* ONCLICK INVISIBLE  && set income true/false*/}
-        <div>
+      <div className="add" style={income ?{backgroundColor:"#00B495"}:{backgroundColor:"rgba(228, 121, 127, 1)"}}>
+        <div className="switchAddExpanseBtn">
           <button onClick={() => setIncome(true)}>Add Income</button>
           <button onClick={() => setIncome(false)}>Add Expense</button>
         </div>
         <div>
-          <div className={income ? "green" : "pink"}>
-            <img src={left} alt="left" />
+          <div className={"green" }>
+            <Link to='/home'>  <img src={left} alt="left"/></Link>
+          
             <h4>{income ? "Add Income" : "Add Expense"}</h4>
             <img src={dots} alt="dots" />
           </div>
@@ -44,59 +54,36 @@ const Add = () => {
           <form action="">
             <div className="formContent">
               <label>NAME</label>
-              <div onClick={handleDropdown} className="dropdown">
-                <div>
-                  {" "}
-                  <p onClick={() => setName("Netflix")}>Netflix</p>{" "}
-                  {dropdown ? (
-                    <img src={up} alt="up" />
-                  ) : (
-                    <img src={down} alt="down" />
-                  )}{" "}
-                </div>
-                <div
-                  style={dropdown ? { display: "block" } : { display: "none" }}
-                >
-                  <p onClick={() => setName("Amazon")}>Amazon</p>
-                  <p onClick={() => setName("Youtube")}>Youtube</p>
-                  <p
-                    onClick={() =>
-                      console.log("hier kÃ¶nnte es dynamisch werden")
-                    }
-                  >
-                    Add Your Transaction
-                  </p>
-                </div>
-              </div>
+              <input type="text" name="name" id="name" value={name} placeholder="Name" onChange={(e)=> setName(e.target.value)} />
+             
               <label htmlFor="amount">AMOUNT</label>
               <input
-                type="text"
+                type="number"
                 name="amount"
                 id="amount"
                 placeholder="Amount"
                 required
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => setAmount(Number(e.target.value))}
               />
               <label htmlFor="date">DATE</label>
               <input
-                type="date"
+                type="datetime-local"
                 name="date"
                 id="date"
                 required
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
+                value={createdAt}
+                onChange={(e) => setCreatedAt(e.target.value)}
               />
               <label htmlFor="receipt">RECEIPT</label>
               <input
                 type="file"
                 name="receipt"
                 id="receipt"
-                placeholder="Add Receipt"
-                value={receipt}
-                onChange={(e) => setReceipt(e.target.value)}
+                value={img}
+                onChange={(e) => setImg(e.target.value)}
               />
-              <button onClick={handleTransaction}>Add Transaction</button>
+            <IoAddCircleOutline onClick={handleTransaction} size={25}/>
             </div>
           </form>
         </div>
