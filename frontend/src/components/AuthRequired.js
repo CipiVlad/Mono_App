@@ -8,7 +8,7 @@ const AuthRequired = ({ token, children, setToken }) => {
 
   useEffect(() => {
     if (token) {
-      setLoading(false);
+      setLoading(true);
       return;
     }
 

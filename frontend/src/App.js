@@ -16,6 +16,7 @@ import EditExpense from "./components/EditExpense";
 import EditIncome from "./components/EditIncome";
 import AuthRequired from "./components/AuthRequired";
 import { apiBaseUrl } from "./api/api";
+import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
   const [token, setToken] = useState(null);
