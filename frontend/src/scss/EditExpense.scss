@@ -11,13 +11,14 @@
     
         justify-content: space-between;
         align-items: center;
-        padding: 3vh 2%;
+    
 
         .icon_expense{
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 2%;
+            margin-top: 3vh;
 
             .del_icon{
                 cursor: pointer;
@@ -45,7 +46,7 @@
         text-align: left;
 
         .formContent {
-            padding: 0 5% 10vh;
+            padding: 0 5% 1vh;
 
             /* Name + Amount + Date + Receipt */
             label {
@@ -59,6 +60,7 @@
             }
             label:nth-of-type(4) {
             margin-top: 2vh;
+            
             }
 
             input {
@@ -82,9 +84,20 @@
             }
 
             /* Receipt Input */
+          
             input[type="file"] {
-                border: 1px dashed #DDDDDD;
-                margin-bottom: 5vh;
+                display: none;
+            }
+            .custom-file-upload {
+                border: 1px solid #ccc;
+                display: inline-block;
+                    text-align: center;
+                border: 1px dashed #666666;
+                padding: 1.5vh 4%;
+                width: 100%;
+                border-radius: 8px;
+                margin-bottom: 2vh;
+                cursor: pointer;
             }
 
             button {
@@ -96,7 +109,7 @@
                 width: 100%;
                 margin: 0 auto;
                 font-size: 18px;
-                margin-bottom: 2vh;
+                margin-bottom: 1vh;
                 cursor: pointer;
                 color: #fff;
 

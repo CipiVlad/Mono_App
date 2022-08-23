@@ -25,14 +25,15 @@ div {
             /* Icon */
             .transaction_icon{
                 display: inline-block;
-                padding: 1.2rem 1.8rem;
-                   background-color: #dddddd;
-                   opacity: 0.8;
-                   border-radius: 50%;
-                   margin:3vh 0;
+                padding:10px 20px;
+                background-color: #dddddd;
+                opacity: 0.8;
+                border-radius: 50%;
+                margin:2vh 0;
 
                    h3{
                           font-size:2rem;
+                          margin-bottom: 0;
                 
                    }
                }
@@ -51,31 +52,34 @@ div {
 
             /* $ 85.00 */
             h2 {
-                padding-bottom: 5vh;
+                padding-bottom: 2vh;
             }
+            .headlineGroup {
+                padding: 0 5%;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 2vh;
 
+                /* Transaction details */
+                h5 {
+                    font-weight: 500;
+                    font-size: 18px;
+                }
+
+               
+            }
             .transactionDetailsContainer {
+                overflow: scroll;
+                height: 50vh;
                 padding: 0 5%;
                 text-align: left;
 
-                .headlineGroup {
-                    display: flex;
-                    justify-content: space-between;
-                    margin-bottom: 2vh;
-
-                    /* Transaction details */
-                    h5 {
-                        font-weight: 500;
-                        font-size: 18px;
-                    }
-
-                   
-                }
+             
 
                 .status {
                     border-bottom: 1px solid #DDDDDD;
                     margin-bottom: 2vh;
-                    padding-bottom: 2vh;
+           
                     line-height: 2rem;
 
                     p {
@@ -112,12 +116,24 @@ div {
                 }
 
                 .total {
-                    padding-bottom: 3vh;
+                    padding-bottom: 1vh;
 
                     span {
                         color: black;
                         font-weight: 600;
                         float: right;
+                    }
+                }
+
+                .receipt_container{
+                    margin-bottom: 2vh;
+                    text-align: center;
+                    p{
+                        text-align: left;
+                    }
+                    img{
+                       width: 100%;
+                       border-radius: 20px;
                     }
                 }
 
@@ -140,6 +156,10 @@ div {
 
                         &:active{
                             background: linear-gradient(180deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100%);
+                            color: white;
+                        }
+                        &:hover{
+                            background-color: #666666;
                             color: white;
                         }
                     }

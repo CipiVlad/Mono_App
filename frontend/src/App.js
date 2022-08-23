@@ -21,10 +21,20 @@ import "bootstrap/dist/css/bootstrap.css";
 function App() {
   const [token, setToken] = useState(null);
   console.log(token);
+  const [replyCounter, setReplyCounter] = useState(0); // used to repload feed
+  const onTransactionReply = () => setReplyCounter((prev) => prev + 1);
 
   const [allFinObj, setAllFinObj] = useState(data);
 
   const [walletInfo, setWalletInfo] = useState(null);
+
+  // const updateTransaction = (editedTransaction) => {
+  //   const newWalletInfo = walletInfo.transactions.map((el) =>
+  //     el._Id === editedTransaction._id ? editedTransaction : el
+  //   );
+  //   setWalletInfo(newWalletInfo);
+  // };
+
   useEffect(() => {
     if (!token) {
       return;
@@ -38,9 +48,10 @@ function App() {
     })
       .then((response) => response.json())
       .then((walletResult) => setWalletInfo(walletResult));
-  }, [token]);
+  }, [token, replyCounter]);
 
   console.log(walletInfo);
+  console.log(replyCounter);
 
   return (
     <div className="App">
@@ -48,7 +59,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Navigate to={token ? "/home" : "/onboarding"} />}
+            element={<Navigate to={token ? "/home" : "/splash"} />}
           />
           <Route path="/splash" element={<Splashscreen />} />
           <Route path="/onboarding" element={<Onboarding />} />
@@ -126,6 +137,8 @@ function App() {
             element={
               <AuthRequired token={token} setToken={setToken}>
                 <Add
+                  onReply={onTransactionReply}
+                  // updateTransaction={updateTransaction}
                   token={token}
                   setToken={setToken}
                   walletInfo={walletInfo}
@@ -138,7 +151,12 @@ function App() {
             path="/editExpense/:id"
             element={
               <AuthRequired token={token} setToken={setToken}>
-                <EditExpense token={token} setToken={setToken} />
+                <EditExpense
+                  onReply={onTransactionReply}
+                  // updateTransaction={updateTransaction}
+                  token={token}
+                  setToken={setToken}
+                />
               </AuthRequired>
             }
           />
@@ -146,7 +164,12 @@ function App() {
             path="/editIncome/:id"
             element={
               <AuthRequired token={token} setToken={setToken}>
-                <EditIncome token={token} setToken={setToken} />
+                <EditIncome
+                  onReply={onTransactionReply}
+                  // updateTransaction={updateTransaction}
+                  token={token}
+                  setToken={setToken}
+                />
               </AuthRequired>
             }
           />

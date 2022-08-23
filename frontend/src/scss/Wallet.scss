@@ -3,30 +3,35 @@
 
 .wallet {
     background: $darkBlue;
+    background: linear-gradient(180deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100%);
+    border-radius: 0 0 20px 20px;
+  
+    height: 25vh;
 
     .topBlueContainer {
-        display: flex;
-        padding: 8vh 5%;
-
-        h4 {
-            margin: auto;
-        }
+   text-align: center;
+        padding: 5vh 5%;
+        margin-bottom: 2vh;
     }
 
     .whiteContainer {
         background: white;
-        border-radius: 30px 30px 0 0;
+        border-radius: 30px ;
+        width: 85%;
+        margin: 0 auto;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
 
         section {
 
             /* Total Balance + Transactions Element Names */
             p {
-                padding: 5vh 0 3vh 0;
+                padding: 3vh 0;
+                margin: 0;
             }
 
             /* $2,548.00 (zur Orientierung) */
             h2 {
-                padding-bottom: 5vh;
+                padding-bottom: 2vh;
             }
         }
 
@@ -34,7 +39,7 @@
             display: flex;
             justify-content: space-evenly;
             margin: auto;
-            padding-bottom: 5vh;
+            padding-bottom: 2vh;
             font-size: 14px;
             a{
                 text-decoration: none;
@@ -43,32 +48,42 @@
         }
 
         /* Transactions History */
+        .transaction_header{
+            padding: 1vh 5% 0 5%;
+            text-align: left;
+            h6{
+                margin: 0;
+            }
+       
+        }
         .transactionsHistory {
-            padding: 0vh 5%;
+            overflow: scroll;
+            height: 40vh;
+            padding: 0 3% ;
+            margin-top: 1vh;
             background: white;
+            border-radius: 30px ;
             h6 {
                 text-align: left;
                 font-size: 1rem;
+              
             }
-            .transaction_header{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-    
-                a{
-                    text-decoration: none;
-                    font-size: 14px;
-                }
-           
+            a{
+                text-decoration: none;
             }
-            
-       
-    
             .transaction_item{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                margin: 1vh 0;
+                margin: 1.5vh 0;
+
+                h5{
+                    margin: 0;
+                }
+
+                p{
+                    margin: 0;
+                }
                 .transaction_amount{
                     font-size: 18px;
                 }
@@ -82,13 +97,14 @@
                         border-radius: 10px;
                         margin-right: 8px;
                     }
+                    h3{
+                        margin: 0;
+                    }
                 }
             }
         }
 
-        // .transactionsHistory::before {
-        //     content: 'Placeholder';
-        // }
+
     }
 
 }

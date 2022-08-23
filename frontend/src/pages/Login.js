@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Man from "../img/man.png";
 import { apiBaseUrl } from "../api/api";
+import { motion } from "framer-motion";
 
 const Login = ({ setToken }) => {
   const [email, setEmail] = useState("");
@@ -42,7 +43,17 @@ const Login = ({ setToken }) => {
     <div className="login">
       <h1>Login</h1>
       <img src={Man} alt="the määään" />
-      <form>
+      <motion.form
+        initial={{ y: "-8vh" }}
+        animate={{ y: 10 }}
+        transition={{
+          delay: 0.4,
+          type: "spring",
+          stiffness: 200,
+          ease: "easeInOut",
+        }}
+        whileHover={{ scale: 1.01 }}
+      >
         <div className="formContent">
           <label htmlFor="email">EMAIL</label>
           <input
@@ -70,7 +81,7 @@ const Login = ({ setToken }) => {
 
         <button onClick={handleLogIn}>Login</button>
         {errorMessage && <p>{errorMessage}</p>}
-      </form>
+      </motion.form>
 
       <p>
         Have No Account? <Link to="/signup">Sign Up</Link>{" "}

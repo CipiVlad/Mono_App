@@ -18,20 +18,23 @@ async function createNewTransaction({
 
   const transaction = {
     name,
-    income,
-    amount,
+    income: income === "true" ? true : false,
+    amount: Number(amount),
     createdAt: new Date(createdAt).getTime(),
     img,
     userId,
   };
+
+  console.log(income);
+  console.log(img);
 
   const user = makeUser(foundUser);
   const totalBalance = user.totalBalance;
 
   const insertResult = await TransactionsDAO.insertTransaction(transaction);
   const newTotalBalance = income
-    ? totalBalance + amount
-    : totalBalance - amount;
+    ? totalBalance + Number(amount)
+    : totalBalance - Number(amount);
   const updateResult = await UserDAO.updateUserTotalBalance(
     userId,
     newTotalBalance

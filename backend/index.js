@@ -29,6 +29,8 @@ app.use(
 );
 
 app.use(morgan("dev"));
+app.use(express.static("uploads/profile"));
+app.use(express.static("uploads/receipt"));
 app.use(express.json());
 
 app.use("/transactions", transactionsRouter);

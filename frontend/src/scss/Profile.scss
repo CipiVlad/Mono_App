@@ -8,21 +8,22 @@
         background: $darkBlue;
         border-radius: 0 0 20px 20px;
         height: 25vh;
-        display: flex;
-        padding: 5vh 5% 20vh;
         color: white;
-
-        h4 {
-            margin: auto;
+        text-align: center;
+        h4{
+            margin-top: 4vh;
         }
+
+      
     }
 
     .profilePicture {
+        object-fit: cover;
         position: relative;
-        top: -50px;
+        top: -75px;
         border-radius: 100%;
-        width: 120px;
-        height: 120px;
+        width: 150px;
+        height: 150px;
         background: white;
         box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1);
     }
@@ -46,7 +47,7 @@
         p {
             display: flex;
             align-items: center;
-            margin-bottom: 4vh;
+            margin-bottom: 3vh;
 
             /* Icons */
             img {

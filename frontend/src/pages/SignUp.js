@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { apiBaseUrl } from "../api/api";
+import { BiImageAdd } from "react-icons/bi";
+import { motion } from "framer-motion";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -42,7 +44,17 @@ const SignUp = () => {
   return (
     <div className="signUp">
       <h1>Sign Up</h1>
-      <form>
+      <motion.form
+        initial={{ y: "-10vh" }}
+        animate={{ y: 10 }}
+        transition={{
+          delay: 0.4,
+          type: "spring",
+          stiffness: 200,
+          ease: "easeInOut",
+        }}
+        whileHover={{ scale: 1.01 }}
+      >
         <div className="formContent">
           <label htmlFor="name">NAME</label>
           <input
@@ -81,18 +93,19 @@ const SignUp = () => {
           />
 
           <label htmlFor="picture">PROFILE PICTURE</label>
-          <input
-            type="file"
-            name="picture"
-            id="picture"
-            onChange={(e) => setUserImg(e.target.files[0])}
-          />
+          <label className="custom-file-upload">
+            <input
+              type="file"
+              onChange={(e) => setUserImg(e.target.files[0])}
+            />
+            <BiImageAdd size={24} /> Add Profile Foto
+          </label>
 
           <button onClick={handleSignUp}>Sign Up</button>
         </div>
         {errorMessage && <p>{errorMessage}</p>}
         {success && <p>{success}</p>}
-      </form>
+      </motion.form>
       <p>
         Already Have An Account? <Link to="/login">Log In</Link>{" "}
       </p>

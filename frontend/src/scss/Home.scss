@@ -4,7 +4,7 @@
    
     background: linear-gradient(180deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100%);
     border-radius: 0 0 20px 20px;
-    padding-top:  10vh;
+    // padding-top:  10vh;
     height: 25vh;
 
 
@@ -57,6 +57,7 @@
 
         .topBlueContainerContent {
 
+
             .income_expenses_container{
                 display: flex;
                 justify-content: space-between;
@@ -96,24 +97,32 @@
         }
     }
 
-    .transactionsHistory {
-        padding: 5vh 5%;
-        background: white;
-        .transaction_header{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            h6 {
-                text-align: left;
-                font-size: 1rem;
-            }
-
-            a{
-                text-decoration: none;
-                font-size: 14px;
-            }
-       
+    .transaction_header{
+        padding: 2vh 5% 0 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+ 
+        h6 {
+            text-align: left;
+            font-size: 1rem;
+      
         }
+
+        a{
+            text-decoration: none;
+            font-size: 14px;
+        }
+   
+    }
+
+    .transactionsHistory {
+
+        overflow: scroll;
+        height: 50vh;
+        padding: 0 5% 10vh 5%;
+        background: white;
+       
         
    
 
@@ -134,10 +143,22 @@
                     opacity: 0.8;
                     border-radius: 10px;
                     margin-right: 8px;
+
+                    h3{
+                        margin: 0;
+                    }
+                }
+                h5{
+                    margin-bottom: 2px;
+                }
+
+                p{
+                    margin: 0;
                 }
             }
         }
-    }
+    
+}
 
 
 

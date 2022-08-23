@@ -6,8 +6,11 @@ import Nav from "../components/Nav";
 import "../scss/EditExpense.scss";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { apiBaseUrl } from "../api/api";
+import { IoReceiptSharp } from "react-icons/io5";
+import { motion } from "framer-motion";
+import TopMobileBar from "./TopMobileBar";
 
-const EditExpense = ({ token }) => {
+const EditExpense = ({ token, onReply }) => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [createdAt, setCreatedAt] = useState("");
@@ -27,12 +30,9 @@ const EditExpense = ({ token }) => {
         setName(data.name);
         setAmount(data.amount);
         setCreatedAt(new Date(data.createdAt).toISOString().substring(0, 16)); //2022-05-26T12:23
-        setReceipt(data.img);
         console.log(data);
       });
   }, [token, id]);
-
-  console.log(img);
 
   const deleteTransaction = () => {
     fetch(`${apiBaseUrl}/transactions/delete/${id}`, {
@@ -45,37 +45,42 @@ const EditExpense = ({ token }) => {
       .then((result) => {
         console.log(result);
         navigate("/home");
+        onReply();
       });
     console.log(id);
   };
   const editTransaction = (e) => {
     e.preventDefault();
 
-    // const formData = new FormData();
-    // formData.append("name", name);
-    // formData.append("amount", amount);
-    // formData.append("createdAt", createdAt);
-    // formData.append("img", img);
-    // formData.append("income", false);
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("amount", amount);
+    formData.append("createdAt", createdAt);
+    formData.set("income", false);
+    if (img) {
+      formData.append("img", img, img.name);
+    }
 
     fetch(`${apiBaseUrl}/transactions/edit/${id}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
         token: "JWT " + token,
       },
-      body: JSON.stringify({
-        name,
-        amount,
-        createdAt,
-        income: false,
-        img,
-      }),
-      // body: formData,
+      // body: JSON.stringify({
+      //   name,
+      //   amount,
+      //   createdAt,
+      //   income: false,
+      //   img,
+      // }),
+      body: formData,
     })
       .then((response) => response.json())
       .then((result) => {
+        console.log(result);
         if (result.acknowledged) {
+          onReply();
           navigate("/home");
         }
       });
@@ -87,10 +92,10 @@ const EditExpense = ({ token }) => {
     <>
       <div className="edit_expense">
         <div className="pink">
+          <TopMobileBar />
           <div className="icon_expense">
-            <Link to="/home">
-              <img src={left} alt="left" />
-            </Link>
+            <img onClick={() => navigate(-1)} src={left} alt="left" />
+
             <div onClick={deleteTransaction} className="del_icon">
               <Delete />
             </div>
@@ -98,7 +103,18 @@ const EditExpense = ({ token }) => {
           <h4>Edit Expense</h4>
         </div>
 
-        <form action="">
+        <motion.form
+          action=""
+          initial={{ y: "-10vh" }}
+          animate={{ y: 10 }}
+          transition={{
+            delay: 0.4,
+            type: "spring",
+            stiffness: 200,
+            ease: "easeInOut",
+          }}
+          whileHover={{ scale: 1.1 }}
+        >
           <div className="formContent">
             <label htmlFor="amount">Name</label>
             <input
@@ -131,18 +147,19 @@ const EditExpense = ({ token }) => {
               value={createdAt}
               onChange={(e) => setCreatedAt(e.target.value)}
             />
-            <label htmlFor="receipt">RECEIPT</label>
-            <input
-              type="file"
-              name="receipt"
-              id="receipt"
-              placeholder="Add Receipt"
-              // value={receipt}
-              onChange={(e) => setReceipt(e.target.files[0])}
-            />
+            <label htmlFor="receipt">RECEIPT </label>
+
+            <label className="custom-file-upload">
+              <input
+                type="file"
+                onChange={(e) => setReceipt(e.target.files[0])}
+              />
+              <IoReceiptSharp size={24} /> Edit Receipt
+            </label>
+
             <button onClick={editTransaction}>Edit Transaction</button>
           </div>
-        </form>
+        </motion.form>
       </div>
       <Nav />
     </>

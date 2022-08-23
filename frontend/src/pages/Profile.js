@@ -6,8 +6,9 @@ import envelope from "../img/envelope.png";
 import shield from "../img/shield.png";
 import lock from "../img/lock.png";
 import Nav from "../components/Nav";
-import ProfilePicture from "../img/ProfilePicture.png";
 import { apiBaseUrl } from "../api/api";
+import { motion } from "framer-motion";
+import TopMobileBar from "../components/TopMobileBar";
 
 const Profile = ({ walletInfo, setToken }) => {
   const navigate = useNavigate();
@@ -20,57 +21,71 @@ const Profile = ({ walletInfo, setToken }) => {
   };
 
   return (
-    <div>
-      <div className="profile">
-        <div className="topBlueContainer">
-          <Link to={"/wallet"}>
-            <img src={left} alt="left" />
-          </Link>
-          <h4>Profile</h4>
+    walletInfo && (
+      <div>
+        <div className="profile">
+          <div className="topBlueContainer">
+            <TopMobileBar />
+            <h4>Profile</h4>
+          </div>
+          <motion.div
+            initial={{ y: "100vh" }}
+            animate={{
+              opacity: [0, 0.5, 1],
+              y: [100, 0, 0],
+            }}
+            transition={{
+              type: "twin",
+              duration: 0.5,
+              delay: 2 / 10,
+            }}
+          >
+            <img
+              src={
+                walletInfo.userImg?.startsWith("http")
+                  ? walletInfo.userImg
+                  : `${apiBaseUrl}/${walletInfo.userImg}`
+              }
+              alt={walletInfo.userImg}
+              className="profilePicture"
+            />
+          </motion.div>
+          <h2 className="name">{walletInfo.name}</h2>
+          <p className="username">{walletInfo.email}</p>
+          <div className="profileContent">
+            <p>
+              {" "}
+              <img src={userprofile} alt="profile icon" />{" "}
+              <Link to="/profile">Account info</Link>
+            </p>
+            <p>
+              {" "}
+              <img src={users} alt="personal profile icon" />{" "}
+              <Link to="/profile">Personal profile</Link>{" "}
+            </p>
+            <p>
+              {" "}
+              <img src={envelope} alt="message" />{" "}
+              <Link to="/profile">Message center</Link>
+            </p>
+            <p>
+              {" "}
+              <img src={shield} alt="shield" />{" "}
+              <Link to="/profile">Login and security</Link>{" "}
+            </p>
+            <p>
+              {" "}
+              <img src={lock} alt="lock" />{" "}
+              <Link to="/profile">Data and privacy</Link>
+            </p>
+            <p onClick={logOut}>
+              <img src={lock} alt="lock" /> <Link to="/profile">Log Out</Link>
+            </p>
+          </div>
         </div>
-
-        <img
-          // src={walletInfo && walletInfo.userImg}
-          src={ProfilePicture}
-          alt={walletInfo && walletInfo.userImg}
-          className="profilePicture"
-        />
-
-        <h2 className="name">{walletInfo && walletInfo.name}</h2>
-        <p className="username">{walletInfo && walletInfo.email}</p>
-        <div className="profileContent">
-          <p>
-            {" "}
-            <img src={userprofile} alt="profile icon" />{" "}
-            <Link to="/profile">Account info</Link>
-          </p>
-          <p>
-            {" "}
-            <img src={users} alt="personal profile icon" />{" "}
-            <Link to="/profile">Personal profile</Link>{" "}
-          </p>
-          <p>
-            {" "}
-            <img src={envelope} alt="message" />{" "}
-            <Link to="/profile">Message center</Link>
-          </p>
-          <p>
-            {" "}
-            <img src={shield} alt="shield" />{" "}
-            <Link to="/profile">Login and security</Link>{" "}
-          </p>
-          <p>
-            {" "}
-            <img src={lock} alt="lock" />{" "}
-            <Link to="/profile">Data and privacy</Link>
-          </p>
-          <p onClick={logOut}>
-            <img src={lock} alt="lock" /> <Link to="/profile">Log Out</Link>
-          </p>
-        </div>
+        <Nav />
       </div>
-      <Nav />
-    </div>
+    )
   );
 };
 

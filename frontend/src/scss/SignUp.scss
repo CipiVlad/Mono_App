@@ -5,7 +5,7 @@
     background-position: 0 -30vh;
     // width: 20%;
     // margin: auto;
-    padding: 0 5%;
+    padding: 0 8%;
 
 
     h1 {
@@ -46,7 +46,18 @@
 
             /* Profile Picture */
             input[type="file"] {
-                border: 1px dashed #dddddd;
+                display: none;
+            }
+            .custom-file-upload {
+                border: 1px solid #ccc;
+                display: inline-block;
+                    text-align: center;
+                border: 1px dashed #666666;
+                padding: 1.5vh 4%;
+                width: 100%;
+                border-radius: 8px;
+                margin-bottom: 2vh;
+                cursor: pointer;
             }
         }
 

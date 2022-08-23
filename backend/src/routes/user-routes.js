@@ -32,10 +32,10 @@ userRouter.get("/allUsers", doAuthMiddleware, async (_, res) => {
 
 const storage = multer.diskStorage({
   destination: function (_, _, cb) {
-    cb(null, "uploads");
+    cb(null, "uploads/profile");
   },
   filename: function (_, file, cb) {
-    cb(null, Date.now() + "_" + file.originalname); //Appending extension
+    cb(null, file.originalname); //Appending extension
   },
 });
 const upload = multer({ storage });

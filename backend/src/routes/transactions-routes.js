@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("multer");
 const { showAllTransactions } = require("../use-cases/show-all-transactions");
 const { createNewTransaction } = require("../use-cases/add-transaction");
 const { removeTransaction } = require("../use-cases/delete-transaction");
@@ -24,23 +25,44 @@ transactionsRouter.get("/all", doAuthMiddleware, (req, res) => {
     });
 });
 
-transactionsRouter.post("/add", doAuthMiddleware, (req, res) => {
-  if (!req.body) {
-    res.status(200).json({ error: "Please include a new Income" });
-    return;
-  }
-
-  //   userId: req.userClaims.sub später
-  const userId = req.userClaims.sub;
-  console.log("userId", userId);
-
-  createNewTransaction({ userId, ...req.body })
-    .then((addedIncome) => res.status(201).json(addedIncome))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ error: "Failed to add new income to database." });
-    });
+const storage = multer.diskStorage({
+  destination: function (_, _, cb) {
+    cb(null, "uploads/receipt");
+  },
+  filename: function (_, file, cb) {
+    cb(null, file.originalname); //Appending extension
+  },
 });
+const upload = multer({ storage });
+const uploadMiddleware = upload.single("img");
+
+transactionsRouter.post(
+  "/add",
+  uploadMiddleware,
+  doAuthMiddleware,
+  (req, res) => {
+    if (!req.body) {
+      res.status(200).json({ error: "Please include a new Income" });
+      return;
+    }
+    const userId = req.userClaims.sub;
+
+    const img = req.file.originalname;
+    console.log(img);
+
+    console.log("userId", userId);
+
+    createNewTransaction({ userId, img, ...req.body })
+      .then((addedIncome) => res.status(201).json(addedIncome))
+      .catch((err) => {
+        console.log(err);
+        res
+          .status(500)
+          .json({ error: "Failed to add new income to database." });
+      });
+  }
+);
+
 transactionsRouter.get("/details/:id", doAuthMiddleware, (req, res) => {
   const transactionId = req.params.id;
   console.log(transactionId);
@@ -65,43 +87,43 @@ transactionsRouter.delete("/delete/:id", doAuthMiddleware, (req, res) => {
     });
 });
 
-transactionsRouter.put("/edit/:id", doAuthMiddleware, async (req, res) => {
-  // const transactionId = req.params.id;
-  // const newTransactionValue = {
-  //   transactionId,
-  //   " name": req.body.name,
-  //   " amount": req.body.amount,
-  //   income: req.body.income === "false" ? false : true,
-  //   createdAt: new Date(req.body.createdAt).getTime(),
-  // };
+transactionsRouter.put(
+  "/edit/:id",
+  uploadMiddleware,
+  doAuthMiddleware,
+  async (req, res) => {
+    try {
+      const transactionId = req.params.id;
+      // const userInfo = req.body;
+      const income = req.body.income;
+      console.log(income);
+      const transactioUpdateInfo = {
+        transactionId,
+        name: req.body.name,
+        amount: Number(req.body.amount),
+        income: income === "true" ? true : false,
+        createdAt: new Date(req.body.createdAt).getTime(),
+      };
 
-  // updateTransaction({ transactionId, transactionObject: newTransactionValue })
-  //   .then((updateTransaction) => res.json(updateTransaction))
-  //   .catch((err) => {
-  //     console.log(err);
-  //     res.status(500).json({ error: "Failed to update transaction" });
-  //   });
+      if (req.file) {
+        transactioUpdateInfo.img = req.file.originalname;
+      }
+      console.log("transactioUpdateInfo", transactioUpdateInfo);
 
-  try {
-    const transactionId = req.params.id;
-    const transactioUpdateInfo = {
-      transactionId,
-      name: req.body.name,
-      amount: Number(req.body.amount),
-      income: req.body.income,
-      createdAt: new Date(req.body.createdAt).getTime(),
-    };
+      const updatedTransaction = await updateTransaction(transactioUpdateInfo);
+      // const updatedTransaction = await updateTransaction({
+      //   ...userInfo,
+      //   transactionId,
+      //   img,
+      // });
 
-    console.log("transactioUpdateInfo", transactioUpdateInfo);
-
-    const updatedTransaction = await updateTransaction(transactioUpdateInfo);
-    console.log("updatedTransaction", updatedTransaction);
-    res.json(updatedTransaction);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json("Unknown error while editing a Transaction.");
+      res.json(updatedTransaction);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json("Unknown error while editing a Transaction.");
+    }
   }
-});
+);
 
 module.exports = {
   transactionsRouter,

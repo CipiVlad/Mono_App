@@ -6,6 +6,8 @@ import Send from "../img/Send.png";
 import ArrowLeft from "../img/ArrowLeft.png";
 import Nav from "../components/Nav";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import TopMobileBar from "../components/TopMobileBar";
 
 const Wallet = ({ walletInfo }) => {
   const income =
@@ -30,15 +32,22 @@ const Wallet = ({ walletInfo }) => {
   return (
     <>
       <div className="wallet">
+        <TopMobileBar />
         <div className="topBlueContainer">
-          <Link to={"/add"}>
-            {" "}
-            <img src={ArrowLeft} alt="arrow left" />
-          </Link>
-
           <h4>Wallet</h4>
         </div>
-        <div className="whiteContainer">
+        <motion.div
+          className="whiteContainer"
+          initial={{ y: "-8vh" }}
+          animate={{ y: 10 }}
+          transition={{
+            delay: 0.5,
+            duration: 0.3,
+            stiffness: 200,
+            ease: "easeInOut",
+          }}
+          whileHover={{ scale: 1.1 }}
+        >
           <section>
             <p>Total Balance</p>
             <h2>${walletInfo && totalBalance}</h2>
@@ -71,46 +80,68 @@ const Wallet = ({ walletInfo }) => {
               </a>
             </div>
           </div>
-          <div className="transactionsHistory">
+          <div className="transaction_header">
             <h6>Transactions History</h6>
+          </div>
+          <div className="transactionsHistory">
             <div>
               {walletInfo &&
                 Array.isArray(walletInfo.transactions) &&
                 walletInfo.transactions.map((ele, index) => (
-                  <div className="transaction_item" key={index}>
-                    <div className="transaction_headline">
-                      <div className="transaction_icon">
-                        <h3> {ele.name && ele.name.charAt(0)}</h3>
-                      </div>
-                      <div className="transaction_name_date">
-                        <h5>{ele.name}</h5>
-                        <p>
-                          {new Date(ele.createdAt).toLocaleDateString("de-DE", {
-                            year: "numeric",
-                            month: "2-digit",
-                            day: "2-digit",
-                          })}
-                        </p>
-                        {/* moment js */}
-                        {/* <p>
+                  <Link to={`/detail/${ele._id}`}>
+                    <motion.div
+                      className="transaction_item"
+                      key={index}
+                      initial={{ y: "100vh" }}
+                      animate={{
+                        opacity: [0, 0.5, 1],
+                        y: [100, 0, 0],
+                      }}
+                      transition={{
+                        type: "twin",
+                        duration: 0.5,
+                        delay: (parseInt(index) + 0.5) / 10,
+                      }}
+                    >
+                      <div className="transaction_headline">
+                        <div className="transaction_icon">
+                          <h3> {ele.name && ele.name.charAt(0)}</h3>
+                        </div>
+                        <div className="transaction_name_date">
+                          <h5>{ele.name}</h5>
+                          <p>
+                            {new Date(ele.createdAt).toLocaleDateString(
+                              "de-DE",
+                              {
+                                year: "numeric",
+                                month: "2-digit",
+                                day: "2-digit",
+                              }
+                            )}
+                          </p>
+                          {/* moment js */}
+                          {/* <p>
                         {new Date(ele.createdAt).toUTCString().slice(0, 17)}
                       </p> */}
+                        </div>
                       </div>
-                    </div>
 
-                    <p
-                      className="transaction_amount"
-                      style={
-                        ele.income ? { color: "#25A969" } : { color: "#F95B51" }
-                      }
-                    >
-                      {ele.income ? `+ $${ele.amount}` : `- $${ele.amount}`}
-                    </p>
-                  </div>
+                      <p
+                        className="transaction_amount"
+                        style={
+                          ele.income
+                            ? { color: "#25A969" }
+                            : { color: "#F95B51" }
+                        }
+                      >
+                        {ele.income ? `+ $${ele.amount}` : `- $${ele.amount}`}
+                      </p>
+                    </motion.div>
+                  </Link>
                 ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
       <Nav />
     </>
