@@ -11,7 +11,6 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Add from "./pages/Add";
-import data from "./components/Data.js";
 import EditExpense from "./components/EditExpense";
 import EditIncome from "./components/EditIncome";
 import AuthRequired from "./components/AuthRequired";
@@ -23,8 +22,6 @@ function App() {
   console.log(token);
   const [replyCounter, setReplyCounter] = useState(0); // used to repload feed
   const onTransactionReply = () => setReplyCounter((prev) => prev + 1);
-
-  const [allFinObj, setAllFinObj] = useState(data);
 
   const [walletInfo, setWalletInfo] = useState(null);
 
@@ -99,7 +96,6 @@ function App() {
                 <Statistic
                   token={token}
                   setToken={setToken}
-                  allFinObj={allFinObj}
                   walletInfo={walletInfo}
                 />
               </AuthRequired>

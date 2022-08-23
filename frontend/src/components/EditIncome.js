@@ -44,11 +44,10 @@ const EditIncome = ({ token, updateTransaction, onReply }) => {
       },
     })
       .then((response) => response.json())
-      .then((deletedTransaction) => {
-        updateTransaction(deletedTransaction);
-        console.log(deletedTransaction);
-        onReply();
+      .then((result) => {
+        console.log(result);
         navigate("/home");
+        onReply();
       });
     console.log(id);
   };

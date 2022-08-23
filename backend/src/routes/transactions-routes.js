@@ -46,8 +46,11 @@ transactionsRouter.post(
       return;
     }
     const userId = req.userClaims.sub;
+    let img;
+    if (req.file) {
+      img = req.file.originalname;
+    }
 
-    const img = req.file.originalname;
     console.log(img);
 
     console.log("userId", userId);

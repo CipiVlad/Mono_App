@@ -26,7 +26,7 @@ const Add = ({ token, setWalletInfo, updateTransaction, onReply }) => {
     formData.append("createdAt", createdAt);
 
     if (img) {
-      formData.append("img", img);
+      formData.append("img", img, img.name);
     }
     income ? formData.append("income", true) : formData.append("income", false);
 
