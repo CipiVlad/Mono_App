@@ -104,7 +104,7 @@ const Add = ({ token, setWalletInfo, updateTransaction, onReply }) => {
                 placeholder="Amount"
                 required
                 value={amount}
-                onChange={(e) => setAmount(Number(e.target.value))}
+                onChange={(e) => setAmount(e.target.value)}
               />
               <label htmlFor="date">DATE</label>
               <input

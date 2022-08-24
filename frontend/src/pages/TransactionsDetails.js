@@ -63,7 +63,7 @@ const TransactionsDetails = ({ walletInfo, token }) => {
             <div className="transactionDetailsContainer">
               <div className="status">
                 <p>
-                  Status{" "}
+                  Status
                   <span
                     style={
                       detailTransaction.income
@@ -73,35 +73,35 @@ const TransactionsDetails = ({ walletInfo, token }) => {
                     className="spanIncomeOrExpense"
                   >
                     {detailTransaction.income ? "Income" : "Expense"}
-                  </span>{" "}
+                  </span>
                 </p>
                 <p>
-                  From <span>{detailTransaction.name}</span>{" "}
+                  From <span>{detailTransaction.name}</span>
                 </p>
                 <p>
-                  Time{" "}
+                  Time
                   <span>
                     {new Date(detailTransaction.createdAt).toLocaleTimeString(
                       [],
                       { hour: "2-digit", minute: "2-digit" }
                     )}
-                  </span>{" "}
+                  </span>
                 </p>
                 <p>
-                  Date{" "}
+                  Date
                   <span>
                     {new Date(detailTransaction.createdAt)
                       .toUTCString()
                       .slice(0, 17)}
-                  </span>{" "}
+                  </span>
                 </p>
               </div>
               <p className="spending">
-                {detailTransaction.income ? "Earnings" : "Spending"}{" "}
-                <span>$ {detailTransaction.amount.toFixed(2)}</span>{" "}
+                {detailTransaction.income ? "Earnings" : "Spending"}
+                <span>$ {detailTransaction.amount.toFixed(2)}</span>
               </p>
               <p className="total">
-                Total <span>$ {detailTransaction.amount.toFixed(2)}</span>{" "}
+                Total <span>$ {detailTransaction.amount.toFixed(2)}</span>
               </p>
 
               <div className="receipt_container">
