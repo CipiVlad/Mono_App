@@ -32,19 +32,7 @@ const Home = ({ walletInfo }) => {
   return (
     walletInfo && (
       <>
-        <motion.div
-          className="home"
-          // initial={{ y: "100vh" }}
-          // animate={{
-          //   opacity: [0, 0.5, 1],
-          //   y: [100, 0, 0],
-          // }}
-          // transition={{
-          //   type: "twin",
-          //   duration: 0.5,
-          //   delay: 0.5,
-          // }}
-        >
+        <motion.div className="home">
           <TopMobileBar />
           <h4 className="home_headline">Home</h4>
           <motion.section
@@ -134,10 +122,6 @@ const Home = ({ walletInfo }) => {
                             day: "2-digit",
                           })}
                         </p>
-                        {/* moment js */}
-                        {/* <p>
-                        {new Date(ele.createdAt).toUTCString().slice(0, 17)}
-                      </p> */}
                       </div>
                     </div>
 

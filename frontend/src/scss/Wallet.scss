@@ -66,23 +66,26 @@
             h6 {
                 text-align: left;
                 font-size: 1rem;
-              
             }
             a{
                 text-decoration: none;
             }
+           
             .transaction_item{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 margin: 1.5vh 0;
-
+               
                 h5{
                     margin: 0;
+                    text-align: left;
+
                 }
 
                 p{
                     margin: 0;
+                    text-align: left;
                 }
                 .transaction_amount{
                     font-size: 18px;

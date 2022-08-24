@@ -64,16 +64,9 @@ const EditExpense = ({ token, onReply }) => {
     fetch(`${apiBaseUrl}/transactions/edit/${id}`, {
       method: "PUT",
       headers: {
-        // "Content-Type": "application/json",
         token: "JWT " + token,
       },
-      // body: JSON.stringify({
-      //   name,
-      //   amount,
-      //   createdAt,
-      //   income: false,
-      //   img,
-      // }),
+
       body: formData,
     })
       .then((response) => response.json())

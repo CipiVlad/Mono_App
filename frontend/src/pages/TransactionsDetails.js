@@ -123,7 +123,6 @@ const TransactionsDetails = ({ walletInfo, token }) => {
                       : `/editExpense/${detailTransaction._id}`
                   }
                 >
-                  {/* <button>Edit</button> */}
                   Edit
                 </Link>
               </div>

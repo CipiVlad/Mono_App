@@ -3,7 +3,6 @@ import "../scss/Wallet.scss";
 import Add from "../img/Add.png";
 import Pay from "../img/Pay.png";
 import Send from "../img/Send.png";
-import ArrowLeft from "../img/ArrowLeft.png";
 import Nav from "../components/Nav";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -119,10 +118,6 @@ const Wallet = ({ walletInfo }) => {
                               }
                             )}
                           </p>
-                          {/* moment js */}
-                          {/* <p>
-                        {new Date(ele.createdAt).toUTCString().slice(0, 17)}
-                      </p> */}
                         </div>
                       </div>
 

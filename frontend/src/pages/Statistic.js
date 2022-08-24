@@ -39,10 +39,62 @@ const Statistic = ({ walletInfo }) => {
   const date = new Date();
   const time = date.toLocaleTimeString().slice(0, 5);
   const [statistic, setStatistic] = useState([]);
-  const navigate = useNavigate();
+  const [sortStatistic, setSortStatistic] = useState(walletInfo);
+  const [toggleTrans, setToggleTrans] = useState(true);
 
-  const handleStatistic = () => {
-    setStatistic(walletInfo);
+  const navigate = useNavigate();
+  const asIncome = (amount, income) => (income ? amount : -amount);
+
+  const amountSortDesc = () => {
+    setSortStatistic([
+      ...walletInfo.transactions.sort(
+        (a, b) => asIncome(b.amount, b.income) - asIncome(a.amount, a.income)
+      ),
+    ]);
+  };
+
+  const amountSortAsc = () => {
+    setSortStatistic([
+      ...walletInfo.transactions.sort(
+        (a, b) => asIncome(a.amount, a.income) - asIncome(b.amount, b.income)
+      ),
+    ]);
+  };
+
+  const handleToggleAmount = () => {
+    setToggleTrans(!toggleTrans);
+    toggleTrans ? amountSortDesc() : amountSortAsc();
+  };
+
+  const nameSortDesc = () => {
+    setSortStatistic([
+      ...walletInfo.transactions.sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        } else if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      }),
+    ]);
+  };
+  const dateSortDesc = () => {
+    setSortStatistic([
+      ...walletInfo.transactions.sort((a, b) => b.createdAt - a.createdAt),
+    ]);
+  };
+
+  const handleSelect = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+
+    if (e.target.value === "Name") {
+      nameSortDesc();
+    } else if (e.target.value === "Date") {
+      dateSortDesc();
+    } else if (e.target.value === "Amount") {
+      amountSortDesc();
+    }
   };
 
   return (
@@ -63,20 +115,34 @@ const Statistic = ({ walletInfo }) => {
             <h4>Statistics</h4>
           </div>
           <div className="chart_data">
-            <BarChart
-              handleStatistic={handleStatistic}
-              statistic={statistic}
-              chartData={userData}
-            />
+            <BarChart statistic={statistic} chartData={userData} />
           </div>
 
           <div className="transaction_header">
             <h6>Top Spending</h6>
-            <Link to="/wallet">
-              <img src={Vector} alt={Vector} />
-            </Link>
+            <div style={{ display: "flex", gap: "5px" }}>
+              <form action="">
+                <select
+                  style={{
+                    borderColor: "#6666",
+                    padding: "3px",
+                    borderRadius: "8px",
+                    width: "70%",
+                  }}
+                  onChange={handleSelect}
+                  name=""
+                  id=""
+                >
+                  <option value="">Choose select</option>
+                  <option value="Amount">Amount</option>
+                  <option value="Name">Name</option>
+                  <option value="Date">Date</option>
+                </select>
+              </form>
+              <img onClick={handleToggleAmount} src={Vector} alt={Vector} />
+            </div>
           </div>
-          <div onClick={handleStatistic} className="transactionsHistory">
+          <div className="transactionsHistory">
             <div>
               {walletInfo.transactions.map((ele, index) => (
                 <motion.div
@@ -94,17 +160,8 @@ const Statistic = ({ walletInfo }) => {
                   }}
                 >
                   <div className="transaction_headline">
-                    <div
-                      // style={
-                      //   ele.income
-                      //     ? { backgroundColor: "#25A969" }
-                      //     : { backgroundColor: "#F95B51" }
-                      // }
-                      className="transaction_icon"
-                    >
-                      <h3 style={{ color: "white" }}>
-                        {ele.name && ele.name.charAt(0)}
-                      </h3>
+                    <div className="transaction_icon">
+                      <h3>{ele.name && ele.name.charAt(0)}</h3>
                     </div>
                     <div className="transaction_name_date">
                       <h5>{ele.name}</h5>
@@ -115,10 +172,6 @@ const Statistic = ({ walletInfo }) => {
                           day: "2-digit",
                         })}
                       </p>
-                      {/* moment js */}
-                      {/* <p>
-                        {new Date(ele.createdAt).toUTCString().slice(0, 17)}
-                      </p> */}
                     </div>
                   </div>
 

@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import left from "../img/chevron-left.png";
 import userprofile from "../img/userProfile.png";
 import users from "../img/users.png";
 import envelope from "../img/envelope.png";
