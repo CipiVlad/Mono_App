@@ -38,7 +38,13 @@ const Statistic = ({ walletInfo }) => {
   });
   const date = new Date();
   const time = date.toLocaleTimeString().slice(0, 5);
+  const [statistic, setStatistic] = useState([]);
   const navigate = useNavigate();
+
+  const handleStatistic = () => {
+    setStatistic(walletInfo);
+  };
+
   return (
     walletInfo && (
       <>
@@ -57,7 +63,11 @@ const Statistic = ({ walletInfo }) => {
             <h4>Statistics</h4>
           </div>
           <div className="chart_data">
-            <BarChart chartData={userData} />
+            <BarChart
+              handleStatistic={handleStatistic}
+              statistic={statistic}
+              chartData={userData}
+            />
           </div>
 
           <div className="transaction_header">
@@ -66,65 +76,63 @@ const Statistic = ({ walletInfo }) => {
               <img src={Vector} alt={Vector} />
             </Link>
           </div>
-          <div className="transactionsHistory">
+          <div onClick={handleStatistic} className="transactionsHistory">
             <div>
               {walletInfo.transactions.map((ele, index) => (
-                <Link to={`/detail/${ele._id}`}>
-                  <motion.div
-                    className="transaction_item"
-                    key={index}
-                    initial={{ y: "100vh" }}
-                    animate={{
-                      opacity: [0, 0.5, 1],
-                      y: [100, 0, 0],
-                    }}
-                    transition={{
-                      type: "twin",
-                      duration: 0.5,
-                      delay: (parseInt(index) + 0.5) / 10,
-                    }}
-                  >
-                    <div className="transaction_headline">
-                      <div
-                        // style={
-                        //   ele.income
-                        //     ? { backgroundColor: "#25A969" }
-                        //     : { backgroundColor: "#F95B51" }
-                        // }
-                        className="transaction_icon"
-                      >
-                        <h3 style={{ color: "white" }}>
-                          {ele.name && ele.name.charAt(0)}
-                        </h3>
-                      </div>
-                      <div className="transaction_name_date">
-                        <h5>{ele.name}</h5>
-                        <p>
-                          {new Date(ele.createdAt).toLocaleDateString("de-DE", {
-                            year: "numeric",
-                            month: "2-digit",
-                            day: "2-digit",
-                          })}
-                        </p>
-                        {/* moment js */}
-                        {/* <p>
+                <motion.div
+                  className="transaction_item"
+                  key={index}
+                  initial={{ y: "100vh" }}
+                  animate={{
+                    opacity: [0, 0.5, 1],
+                    y: [100, 0, 0],
+                  }}
+                  transition={{
+                    type: "twin",
+                    duration: 0.5,
+                    delay: (parseInt(index) + 0.5) / 10,
+                  }}
+                >
+                  <div className="transaction_headline">
+                    <div
+                      // style={
+                      //   ele.income
+                      //     ? { backgroundColor: "#25A969" }
+                      //     : { backgroundColor: "#F95B51" }
+                      // }
+                      className="transaction_icon"
+                    >
+                      <h3 style={{ color: "white" }}>
+                        {ele.name && ele.name.charAt(0)}
+                      </h3>
+                    </div>
+                    <div className="transaction_name_date">
+                      <h5>{ele.name}</h5>
+                      <p>
+                        {new Date(ele.createdAt).toLocaleDateString("de-DE", {
+                          year: "numeric",
+                          month: "2-digit",
+                          day: "2-digit",
+                        })}
+                      </p>
+                      {/* moment js */}
+                      {/* <p>
                         {new Date(ele.createdAt).toUTCString().slice(0, 17)}
                       </p> */}
-                      </div>
                     </div>
+                  </div>
 
-                    <p
-                      className="transaction_amount"
-                      style={
-                        ele.income ? { color: "#25A969" } : { color: "#F95B51" }
-                      }
-                    >
-                      {ele.income && ele.income
-                        ? `+ $${ele.amount.toFixed(2)}`
-                        : `- $${ele.amount.toFixed(2)}`}
-                    </p>
-                  </motion.div>
-                </Link>
+                  <p
+                    className="transaction_amount"
+                    style={
+                      ele.income ? { color: "#25A969" } : { color: "#F95B51" }
+                    }
+                  >
+                    {ele.income && ele.income
+                      ? `+ $${ele.amount.toFixed(2)}`
+                      : `- $${ele.amount.toFixed(2)}`}
+                  </p>
+                </motion.div>
               ))}
             </div>
           </div>
