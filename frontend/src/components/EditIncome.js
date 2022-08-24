@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import left from "../img/chevron-left.png";
 import Delete from "../components/Icons/Delete";
 import Nav from "../components/Nav";
@@ -66,16 +66,9 @@ const EditIncome = ({ token, updateTransaction, onReply }) => {
     fetch(`${apiBaseUrl}/transactions/edit/${id}`, {
       method: "PUT",
       headers: {
-        // "Content-Type": "application/json",
         token: "JWT " + token,
       },
-      // body: JSON.stringify({
-      //   name,
-      //   amount,
-      //   createdAt,
-      //   income: true,
-      //   img,
-      // }),
+
       body: formData,
     })
       .then((response) => response.json())
