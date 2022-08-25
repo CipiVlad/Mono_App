@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import left from "../img/chevron-left.png";
 import dots from "../img/threeDots.png";
 import Nav from "../components/Nav";
-import { IoAddCircleOutline } from "react-icons/io5";
 import { IoReceiptSharp } from "react-icons/io5";
 import { apiBaseUrl } from "../api/api";
 import { motion } from "framer-motion";
@@ -127,7 +126,7 @@ const Add = ({ token, setWalletInfo, updateTransaction, onReply }) => {
                 className={income ? "active_income" : "active_expense"}
                 onClick={handleTransaction}
               >
-                <IoAddCircleOutline size={25} />
+                Add
               </button>
             </div>
           </motion.form>

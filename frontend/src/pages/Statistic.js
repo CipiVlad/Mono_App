@@ -1,7 +1,6 @@
 import BarChart from "../components/BarChart";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Nav from "../components/Nav";
-import MobileTopBarIcons from "../img/MobileTopBarIcons2.png";
 import Vector from "../img/Vector.png";
 import left from "../img/ArrowLeft.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -246,9 +245,7 @@ const Statistic = ({ walletInfo }) => {
   };
 
   // ________________________________________________________
-  const date = new Date();
-  const time = date.toLocaleTimeString().slice(0, 5);
-  const [statistic, setStatistic] = useState([]);
+
   const [sortStatistic, setSortStatistic] = useState(walletInfo);
   const [toggleTrans, setToggleTrans] = useState(true);
 
@@ -349,47 +346,49 @@ const Statistic = ({ walletInfo }) => {
           <div className="transactionsHistory">
             <div>
               {walletInfo.transactions.map((ele, index) => (
-                <motion.div
-                  className="transaction_item"
-                  key={index}
-                  initial={{ y: "100vh" }}
-                  animate={{
-                    opacity: [0, 0.5, 1],
-                    y: [100, 0, 0],
-                  }}
-                  transition={{
-                    type: "twin",
-                    duration: 0.5,
-                    delay: (parseInt(index) + 0.5) / 10,
-                  }}
-                >
-                  <div className="transaction_headline">
-                    <div className="transaction_icon">
-                      <h3>{ele.name && ele.name.charAt(0)}</h3>
-                    </div>
-                    <div className="transaction_name_date">
-                      <h5>{ele.name}</h5>
-                      <p>
-                        {new Date(ele.createdAt).toLocaleDateString("de-DE", {
-                          year: "numeric",
-                          month: "2-digit",
-                          day: "2-digit",
-                        })}
-                      </p>
-                    </div>
-                  </div>
-
-                  <p
-                    className="transaction_amount"
-                    style={
-                      ele.income ? { color: "#25A969" } : { color: "#F95B51" }
-                    }
+                <Link to={`/detail/${ele._id}`}>
+                  <motion.div
+                    className="transaction_item"
+                    key={index}
+                    initial={{ y: "100vh" }}
+                    animate={{
+                      opacity: [0, 0.5, 1],
+                      y: [100, 0, 0],
+                    }}
+                    transition={{
+                      type: "twin",
+                      duration: 0.5,
+                      delay: (parseInt(index) + 0.5) / 10,
+                    }}
                   >
-                    {ele.income && ele.income
-                      ? `+ $${ele.amount.toFixed(2)}`
-                      : `- $${ele.amount.toFixed(2)}`}
-                  </p>
-                </motion.div>
+                    <div className="transaction_headline">
+                      <div className="transaction_icon">
+                        <h3>{ele.name && ele.name.charAt(0)}</h3>
+                      </div>
+                      <div className="transaction_name_date">
+                        <h5>{ele.name}</h5>
+                        <p>
+                          {new Date(ele.createdAt).toLocaleDateString("de-DE", {
+                            year: "numeric",
+                            month: "2-digit",
+                            day: "2-digit",
+                          })}
+                        </p>
+                      </div>
+                    </div>
+
+                    <p
+                      className="transaction_amount"
+                      style={
+                        ele.income ? { color: "#25A969" } : { color: "#F95B51" }
+                      }
+                    >
+                      {ele.income && ele.income
+                        ? `+ $${ele.amount.toFixed(2)}`
+                        : `- $${ele.amount.toFixed(2)}`}
+                    </p>
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </div>
