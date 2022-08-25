@@ -27,7 +27,6 @@ const Home = ({ walletInfo }) => {
   console.log(income);
   console.log(expenses);
   const totalBalance = income - expenses;
-  console.log(walletInfo);
 
   return (
     walletInfo && (

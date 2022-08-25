@@ -26,7 +26,6 @@ const Wallet = ({ walletInfo }) => {
           .reduce((sum, amount) => sum + amount, 0)
       : 0;
 
-  console.log(expenses);
   const totalBalance = (income - expenses).toFixed(2);
   return (
     <>

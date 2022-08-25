@@ -31,8 +31,6 @@ const EditIncome = ({ token, updateTransaction, onReply }) => {
         setName(data.name);
         setAmount(data.amount);
         setCreatedAt(new Date(data.createdAt).toISOString().substring(0, 16)); //2022-05-26T12:23
-
-        console.log(data);
       });
   }, [token, id]);
 
@@ -49,7 +47,6 @@ const EditIncome = ({ token, updateTransaction, onReply }) => {
         navigate("/home");
         onReply();
       });
-    console.log(id);
   };
   const editTransaction = (e) => {
     e.preventDefault();
@@ -80,8 +77,6 @@ const EditIncome = ({ token, updateTransaction, onReply }) => {
           navigate("/home");
         }
       });
-
-    console.log(id);
   };
   return (
     <>

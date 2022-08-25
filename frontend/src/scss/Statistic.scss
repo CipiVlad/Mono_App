@@ -1,6 +1,10 @@
 @import '../scss/generals.scss';
 
 .statistic_container{
+    background: linear-gradient(180deg, rgba(136, 152, 255, 1) 0%, rgba(43, 71, 252, 1) 100%);
+    border-radius: 0 0 20px 20px;
+  
+    height: 25vh;
     .top_mobile_bar{
         display: flex;
         justify-content: space-between;
@@ -20,17 +24,24 @@
         margin: 4vh 1%;
 
         h4{
-            color: #000;
+            color: #fff;
             width: 80%;
-            padding-right: 50px;
+            padding-right: 70px;
         }
         .img{
             width: 20%;
         }
     }
 .chart_data{
+    margin-top: 10vh;
     padding: 4vh 5%;
-    margin-bottom: 5vh;
+ 
+    height: 350px;
+canvas{
+    height: 280px !important;
+
+}
+   
 }
     .transaction_header{
         padding:0 5% 1vh 5% ;
@@ -55,7 +66,7 @@
     .transactionsHistory {
 
         overflow: scroll;
-        height: 40vh;
+        height: 25vh;
         padding: 0 5% 8vh 5%;
         background: white;
 

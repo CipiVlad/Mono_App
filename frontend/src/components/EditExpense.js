@@ -43,7 +43,6 @@ const EditExpense = ({ token, onReply }) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         navigate("/home");
         onReply();
       });
@@ -77,8 +76,6 @@ const EditExpense = ({ token, onReply }) => {
           navigate("/home");
         }
       });
-
-    console.log(id);
   };
 
   return (

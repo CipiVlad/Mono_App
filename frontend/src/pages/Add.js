@@ -45,8 +45,6 @@ const Add = ({ token, setWalletInfo, updateTransaction, onReply }) => {
     navigate("/home");
   }
 
-  console.log(income);
-
   return (
     <>
       <div className="add">

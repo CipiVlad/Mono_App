@@ -29,7 +29,6 @@ const SignUp = () => {
       .then((response) => response.json())
       .then((result) => {
         if (result.err) {
-          console.log(result.err);
           return setErrorMessage(result.err);
         }
         setSuccess("account created successfuly, please login");

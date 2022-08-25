@@ -28,7 +28,6 @@ const Login = ({ setToken }) => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result.message);
         if (result.message) {
           return setErrorMessage(result.message);
         }

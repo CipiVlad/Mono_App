@@ -112,7 +112,8 @@ const TransactionsDetails = ({ walletInfo, token }) => {
                       ? detailTransaction.img
                       : `${apiBaseUrl}/${detailTransaction.img}`
                   }
-                  alt={detailTransaction.img}
+                  // alt={detailTransaction.img}
+                  alt="upload receipt"
                 />
               </div>
               <div className="buttonContainer">
